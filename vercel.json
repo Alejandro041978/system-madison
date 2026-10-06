@@ -1,0 +1,22 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "crons": [
+    {
+      "path": "/api/cron/recompute-situations",
+      "schedule": "30 3 * * *"
+    },
+    {
+      "path": "/api/cron/supervisor",
+      "schedule": "30 4 * * *"
+    },
+    {
+      "path": "/api/cron/campaign-dispatch",
+      "schedule": "0 9-19 * * *"
+    },
+    {
+      "path": "/api/cron/delivery-sync",
+      "schedule": "30 * * * *"
+    }
+  ]
+}
