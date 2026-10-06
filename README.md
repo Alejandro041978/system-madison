@@ -23,7 +23,7 @@ Decisión estructural heredada que **sí** sigue en el código porque cambiarla 
 ## Puesta en marcha
 
 1. **Supabase**: proyecto nuevo (uno por institución). Ejecuta las migraciones de `supabase/` en orden en el SQL Editor y `rls_lockdown.sql` al final (ver `supabase/README.md`).
-2. **Vercel**: proyecto nuevo apuntando a este repositorio; carga las variables de `.env.example`. Los crons están en `vercel.json`.
+2. **Vercel**: proyecto nuevo apuntando a este repositorio; carga las variables de `.env.example`. Los crons están en `vercel.json`. La rama de producción es `main`: cada push a `main` despliega; las demás ramas generan previews.
 3. **Primer acceso**: inserta tu correo en `app_superadmins` y crea tu usuario en Supabase Auth; entra por `/login`.
 
 ## Desarrollo local
