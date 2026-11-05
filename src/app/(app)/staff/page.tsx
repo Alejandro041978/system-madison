@@ -2,6 +2,7 @@ import { guardPage, puedeEditarPagina } from "@/lib/api-guard";
 import { supabaseAdmin } from "@/lib/supabase/server";
 import { fetchAll } from "@/lib/db";
 import { StaffTable, type StaffRow, type RoleOption } from "./StaffTable";
+import { hayCorreo } from "@/lib/mail";
 
 export const metadata = { title: "Personal" };
 export const dynamic = "force-dynamic";
@@ -12,7 +13,7 @@ export default async function StaffPage() {
 
   const [employees, roles] = await Promise.all([
     fetchAll<StaffRow>(
-      db.from("hr_employees").select("id, user_id, email, full_name, role_id, is_helpdesk, active, created_at").order("full_name"),
+      db.from("hr_employees").select("id, user_id, email, full_name, role_id, is_helpdesk, active, created_at, invited_at, invite_kind, invite_error").order("full_name"),
     ),
     db.from("roles").select("id, name").order("name"),
   ]);
@@ -23,7 +24,7 @@ export default async function StaffPage() {
         <div>
           <h1 className="text-2xl font-semibold">Personal</h1>
           <p className="text-sm text-slate-500">
-            Quien tiene ficha aquí es personal. El usuario de acceso se crea en Supabase Auth con el mismo correo.
+            Quien tiene ficha aquí es personal. Al crear la ficha se envía por correo un enlace para elegir contraseña; el usuario es el propio correo.
           </p>
         </div>
         <div className="text-sm text-slate-500">{employees.length} fichas</div>
@@ -34,6 +35,7 @@ export default async function StaffPage() {
         canEdit={puedeEditarPagina(identity, "staff")}
         canImpersonate={identity.isSuperadmin && !identity.impersonatedBy}
         selfId={identity.employee.id}
+        correoConfigurado={hayCorreo()}
       />
     </div>
   );

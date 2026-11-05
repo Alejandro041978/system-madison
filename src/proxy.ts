@@ -13,7 +13,8 @@ import { NextResponse, type NextRequest } from "next/server";
 
 // /api/whatsapp: webhook de Twilio, autenticado por firma HMAC, no por sesión.
 // /enroll y /api/enroll: ficha de inscripción pública, autenticada por token aleatorio.
-const PUBLIC_PATHS = ["/login", "/no-access", "/api/auth/", "/api/whatsapp/", "/enroll/", "/api/enroll"];
+// /auth/: aterrizaje del enlace de invitación (set-password); sin sesión explica qué hacer.
+const PUBLIC_PATHS = ["/login", "/no-access", "/api/auth/", "/auth/", "/api/whatsapp/", "/enroll/", "/api/enroll"];
 
 function isPublic(pathname: string) {
   return PUBLIC_PATHS.some((p) => pathname === p || pathname.startsWith(p));
