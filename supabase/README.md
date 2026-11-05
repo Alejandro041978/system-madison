@@ -16,6 +16,7 @@ Migraciones en orden numérico. Se ejecutan a mano en el **SQL Editor** del pane
 | 10 | `010_outbound.sql` | Ventas saliente: perfil, campañas, cola |
 | 11 | `011_inscripciones.sql` | Ficha de inscripción pública (`enrollment_requests`) |
 | 12 | `012_delivery_status.sql` | Estado de entrega de los envíos de campaña (Twilio) |
+| 13 | `013_invitaciones.sql` | Rastro de invitaciones de acceso en `hr_employees` |
 | … | `00N_*.sql` | Migraciones siguientes, en orden |
 | siempre al final | `rls_lockdown.sql` | Blinda todo `public` (RLS + REVOKE anon/authenticated). **Se vuelve a ejecutar después de cada migración.** Idempotente. |
 

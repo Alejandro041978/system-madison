@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { guardApi } from "@/lib/api-guard";
 import { supabaseAdmin } from "@/lib/supabase/server";
+import { invitarColaborador } from "@/lib/invitations";
 import { fetchAll } from "@/lib/db";
 
 const COLS = "id, user_id, email, full_name, role_id, is_helpdesk, active, phone, notes, created_at, updated_at";
@@ -16,7 +17,11 @@ export async function GET(req: Request) {
   }
 }
 
-/** Alta de colaborador. El usuario de Auth se crea aparte; se enlazan por email al primer login. */
+/**
+ * Alta de colaborador. Crea la ficha y, acto seguido, envía la invitación de
+ * acceso (src/lib/invitations.ts). Si el correo falla, la ficha queda creada
+ * y la respuesta lo dice en `invitacion`; se reenvía desde /staff.
+ */
 export async function POST(req: Request) {
   const g = await guardApi(req);
   if (!g.ok) return g.response;
@@ -43,7 +48,14 @@ export async function POST(req: Request) {
     const dup = error.code === "23505";
     return NextResponse.json({ error: dup ? "Ya existe una ficha con ese correo" : error.message }, { status: dup ? 409 : 500 });
   }
-  return NextResponse.json(data, { status: 201 });
+  let invitacion: { ok: true; kind: string } | { ok: false; motivo: string };
+  try {
+    const r = await invitarColaborador(data.id, g.identity.email);
+    invitacion = { ok: true, kind: r.kind };
+  } catch (e) {
+    invitacion = { ok: false, motivo: (e as Error).message };
+  }
+  return NextResponse.json({ ...data, invitacion }, { status: 201 });
 }
 
 /** Edición con lista blanca de campos. */

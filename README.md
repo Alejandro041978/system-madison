@@ -24,7 +24,7 @@ Decisión estructural heredada que **sí** sigue en el código porque cambiarla 
 
 1. **Supabase**: proyecto nuevo (uno por institución). Ejecuta las migraciones de `supabase/` en orden en el SQL Editor y `rls_lockdown.sql` al final (ver `supabase/README.md`).
 2. **Vercel**: proyecto nuevo apuntando a este repositorio; carga las variables de `.env.example`. Los crons están en `vercel.json`. La rama de producción es `main`: cada push a `main` despliega; las demás ramas generan previews.
-3. **Primer acceso**: inserta tu correo en `app_superadmins` y crea tu usuario en Supabase Auth; entra por `/login`.
+3. **Primer acceso**: inserta tu correo en `app_superadmins` y una ficha en `hr_employees` sin rol, y crea tu usuario en Supabase Auth; entra por `/login`. El resto del personal se invita desde `/staff` (necesita `RESEND_API_KEY` y `RESEND_FROM_EMAIL`).
 
 ## Desarrollo local
 
@@ -40,6 +40,14 @@ Decisión estructural heredada que **sí** sigue en el código porque cambiarla 
 - `src/lib/pages.ts` — catálogo de páginas: sidebar, `ROUTE_TO_PAGE_KEY` y `API_ROUTE_TO_PAGE_KEY` salen de aquí.
 - Pantallas: `/staff` (personal), `/roles` (matriz de permisos), `/audit` (decisiones de permisos).
 - `PERMISOS_MODO=auditoria` (defecto) registra denegaciones y deja pasar; `estricto` bloquea.
+
+## Invitaciones de acceso al personal (2026-11-05)
+
+- `supabase/013_invitaciones.sql` — `hr_employees.invited_at/by`, `invite_kind` (`invite` usuario nuevo | `recovery` ya existía), `invite_error`.
+- `src/lib/mail.ts` — `enviarCorreo()` por Resend (API HTTP, sin SDK); única salida de correo de la app. Sin claves no lanza: devuelve el motivo.
+- `src/lib/invitations.ts` — `invitarColaborador()`: enlace de un solo uso con `auth.admin.generateLink` (Supabase no envía nada), correo por Resend, rastro en la ficha. Caducidad = «Email OTP expiration» del proyecto Supabase.
+- `/api/auth/confirm` (canjea `token_hash` por sesión) → `/auth/set-password` (el colaborador elige contraseña) → `/`. Ambas rutas públicas en el proxy.
+- `/staff`: crear ficha envía la invitación; botón Invitar/Reenviar por fila; estado de acceso (sin invitar, invitado el…, ha iniciado sesión, fallida con motivo).
 
 ## Módulo 1 · Programas y categorías (2026-08-23)
 

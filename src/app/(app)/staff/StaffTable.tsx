@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Eye, Plus } from "lucide-react";
+import { Eye, Plus, Send } from "lucide-react";
 
 export type StaffRow = {
   id: string;
@@ -13,19 +13,24 @@ export type StaffRow = {
   is_helpdesk: boolean;
   active: boolean;
   created_at: string;
+  invited_at: string | null;
+  invite_kind: "invite" | "recovery" | null;
+  invite_error: string | null;
 };
 export type RoleOption = { id: string; name: string };
 
-async function api(method: string, body: unknown) {
-  const res = await fetch("/api/staff", { method, headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+async function api(method: string, body: unknown, path = "/api/staff") {
+  const res = await fetch(path, { method, headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
   const json = await res.json().catch(() => ({}));
   if (!res.ok) throw new Error(json.error ?? `Error ${res.status}`);
   return json;
 }
 
-export function StaffTable(p: { rows: StaffRow[]; roles: RoleOption[]; canEdit: boolean; canImpersonate: boolean; selfId: string }) {
+export function StaffTable(p: { rows: StaffRow[]; roles: RoleOption[]; canEdit: boolean; canImpersonate: boolean; selfId: string; correoConfigurado: boolean }) {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
+  const [aviso, setAviso] = useState<string | null>(null);
+  const [enviando, setEnviando] = useState<string | null>(null);
   const [showNew, setShowNew] = useState(false);
   const [nuevo, setNuevo] = useState({ email: "", full_name: "", role_id: "" });
 
@@ -42,13 +47,33 @@ export function StaffTable(p: { rows: StaffRow[]; roles: RoleOption[]; canEdit: 
   async function crear(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
+    setAviso(null);
     try {
-      await api("POST", { ...nuevo, role_id: nuevo.role_id || null });
+      const r = await api("POST", { ...nuevo, role_id: nuevo.role_id || null });
       setNuevo({ email: "", full_name: "", role_id: "" });
       setShowNew(false);
+      if (r.invitacion?.ok) setAviso(`Ficha creada e invitación enviada a ${r.email}.`);
+      else setError(`Ficha creada, pero la invitación no salió: ${r.invitacion?.motivo ?? "error"}. Puedes reenviarla desde la tabla.`);
       router.refresh();
     } catch (e) {
       setError((e as Error).message);
+    }
+  }
+
+  async function invitar(r: StaffRow) {
+    setError(null);
+    setAviso(null);
+    setEnviando(r.id);
+    try {
+      const res = await api("POST", { employee_id: r.id }, "/api/staff/invite");
+      setAviso(res.kind === "recovery"
+        ? `Enviado a ${r.email} un enlace para establecer una contraseña nueva (ya tenía usuario).`
+        : `Invitación enviada a ${r.email}.`);
+      router.refresh();
+    } catch (e) {
+      setError((e as Error).message);
+    } finally {
+      setEnviando(null);
     }
   }
 
@@ -57,6 +82,12 @@ export function StaffTable(p: { rows: StaffRow[]; roles: RoleOption[]; canEdit: 
   return (
     <div className="space-y-4">
       {error && <div className="rounded-md bg-red-50 border border-red-200 text-red-700 text-sm px-3 py-2">{error}</div>}
+      {aviso && <div className="rounded-md bg-emerald-50 border border-emerald-200 text-emerald-700 text-sm px-3 py-2">{aviso}</div>}
+      {p.canEdit && !p.correoConfigurado && (
+        <div className="rounded-md bg-amber-50 border border-amber-200 text-amber-800 text-sm px-3 py-2">
+          El correo de salida no está configurado (RESEND_API_KEY y RESEND_FROM_EMAIL): las invitaciones no se enviarán hasta configurarlo en Vercel.
+        </div>
+      )}
 
       {p.canEdit && (
         <div>
@@ -123,7 +154,24 @@ export function StaffTable(p: { rows: StaffRow[]; roles: RoleOption[]; canEdit: 
                   <input type="checkbox" disabled={!p.canEdit || r.id === p.selfId} checked={r.active} onChange={(e) => patch(r.id, { active: e.target.checked })} />
                 </td>
                 <td className="px-4 py-2 text-xs">
-                  {r.user_id ? <span className="text-emerald-700">ha iniciado sesión</span> : <span className="text-slate-400">pendiente</span>}
+                  <div className="flex items-center gap-2">
+                    <span>
+                      {r.user_id
+                        ? <span className="text-emerald-700">ha iniciado sesión</span>
+                        : r.invite_error && !r.invited_at
+                          ? <span className="text-red-700" title={r.invite_error}>invitación fallida</span>
+                          : r.invited_at
+                            ? <span className="text-amber-700" title={r.invite_error ?? undefined}>invitado el {new Date(r.invited_at).toLocaleDateString("es-ES")}{r.invite_error ? " · último reenvío falló" : ""}</span>
+                            : <span className="text-slate-400">sin invitar</span>}
+                    </span>
+                    {p.canEdit && r.active && (
+                      <button onClick={() => invitar(r)} disabled={enviando === r.id}
+                        className="inline-flex items-center gap-1 text-sky-700 hover:underline disabled:opacity-50"
+                        title={r.user_id ? "Enviar un enlace para establecer una contraseña nueva" : "Enviar el enlace de acceso"}>
+                        <Send className="h-3 w-3" /> {enviando === r.id ? "Enviando…" : r.invited_at || r.user_id ? "Reenviar" : "Invitar"}
+                      </button>
+                    )}
+                  </div>
                 </td>
                 {p.canImpersonate && (
                   <td className="px-4 py-2">
