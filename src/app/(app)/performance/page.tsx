@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic";
 
 const ETAPAS = ["nuevo", "contactable", "calificado", "interesado", "inscrito", "descartado"] as const;
 const COLOR_ETAPA: Record<string, string> = {
-  nuevo: "bg-slate-400", contactable: "bg-sky-500", calificado: "bg-violet-500",
+  nuevo: "bg-slate-400", contactable: "bg-plum-light", calificado: "bg-violet-500",
   interesado: "bg-amber-500", inscrito: "bg-emerald-600", descartado: "bg-red-400",
 };
 
@@ -25,7 +25,7 @@ export default async function PerformancePage({ searchParams }: PageProps<"/perf
         <div className="flex gap-2 text-sm">
           {[7, 30, 90].map((d) => (
             <Link key={d} href={`/performance?days=${d}`}
-              className={`rounded-full px-3 py-1 border ${dias === d ? "bg-[#0f2a44] text-white border-[#0f2a44]" : "bg-white border-slate-300"}`}>{d} días</Link>
+              className={`rounded-full px-3 py-1 border ${dias === d ? "bg-brand text-white border-brand" : "bg-white border-slate-300"}`}>{d} días</Link>
           ))}
         </div>
       </div>
@@ -49,7 +49,7 @@ export default async function PerformancePage({ searchParams }: PageProps<"/perf
 
       <div className="grid grid-cols-2 gap-5 mb-6">
         <Panel titulo={`Conversaciones por día (el prospecto escribió)`}>
-          <Barras serie={m.conversacionesPorDia} clase="bg-sky-500" />
+          <Barras serie={m.conversacionesPorDia} clase="bg-plum-light" />
         </Panel>
         <Panel titulo={`Leads nuevos por día`}>
           <Barras serie={m.leadsNuevosPorDia} clase="bg-violet-500" />
@@ -165,7 +165,7 @@ const MOTIVO_NO_ENTREGA: Record<string, string> = {
 };
 
 function Visto({ icono, t, n, base, nota, azul, rojo, verde }: { icono: string; t: string; n: number | null; base: number; nota: string; azul?: boolean; rojo?: boolean; verde?: boolean }) {
-  const color = azul ? "text-sky-500" : rojo ? "text-red-500" : verde ? "text-emerald-600" : "text-slate-400";
+  const color = azul ? "text-plum-light" : rojo ? "text-red-500" : verde ? "text-emerald-600" : "text-slate-400";
   return (
     <div className={`rounded-lg border p-3 ${rojo && (n ?? 0) > 0 ? "bg-red-50 border-red-200" : "bg-white border-slate-200"}`}>
       <div className="text-[11px] uppercase tracking-wider text-slate-400"><span className={`${color} font-semibold mr-1`}>{icono}</span>{t}</div>
@@ -177,7 +177,7 @@ function Visto({ icono, t, n, base, nota, azul, rojo, verde }: { icono: string; 
 
 function Card({ t, v, s, warn, strong }: { t: string; v: string; s: string; warn?: boolean; strong?: boolean }) {
   return (
-    <div className={`rounded-lg border p-3 ${warn ? "bg-red-50 border-red-200" : strong ? "bg-[#0f2a44] text-white border-[#0f2a44]" : "bg-white border-slate-200"}`}>
+    <div className={`rounded-lg border p-3 ${warn ? "bg-red-50 border-red-200" : strong ? "bg-brand text-white border-brand" : "bg-white border-slate-200"}`}>
       <div className={`text-[11px] uppercase tracking-wider ${strong ? "text-slate-300" : "text-slate-400"}`}>{t}</div>
       <div className="text-2xl font-semibold">{v}</div>
       <div className={`text-xs ${strong ? "text-slate-300" : "text-slate-500"}`}>{s}</div>
@@ -191,7 +191,7 @@ function FilaFicha({ label, n, base, destaca }: { label: string; n: number; base
     <div className="flex items-center gap-2">
       <div className="w-44 text-slate-600">{label}</div>
       <div className="flex-1 bg-slate-100 rounded h-5 overflow-hidden">
-        <div className={`h-5 ${destaca ? "bg-emerald-600" : "bg-[#0f2a44]"}`} style={{ width: `${w}%`, opacity: destaca ? 1 : 0.75 }} />
+        <div className={`h-5 ${destaca ? "bg-emerald-600" : "bg-brand"}`} style={{ width: `${w}%`, opacity: destaca ? 1 : 0.75 }} />
       </div>
       <div className="w-10 text-right font-medium">{n}</div>
     </div>

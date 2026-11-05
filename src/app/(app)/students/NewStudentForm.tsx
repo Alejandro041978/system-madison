@@ -23,7 +23,7 @@ export function NewStudentForm() {
 
   if (!open) {
     return (
-      <button onClick={() => setOpen(true)} className="inline-flex items-center gap-1.5 rounded-md bg-[#0f2a44] text-white px-3 py-1.5 text-sm hover:bg-[#163a5c]">
+      <button onClick={() => setOpen(true)} className="inline-flex items-center gap-1.5 rounded-md bg-brand text-white px-3 py-1.5 text-sm hover:bg-brand-dark">
         <Plus className="h-4 w-4" /> Nuevo estudiante
       </button>
     );
@@ -49,7 +49,7 @@ export function NewStudentForm() {
         </div>
         <div className="mt-5 flex gap-3 justify-end">
           <button type="button" onClick={() => setOpen(false)} className="text-sm text-slate-500 hover:underline">Cancelar</button>
-          <button className="rounded-md bg-[#0f2a44] text-white px-4 py-1.5 text-sm">Crear y abrir ficha</button>
+          <button className="rounded-md bg-brand text-white px-4 py-1.5 text-sm">Crear y abrir ficha</button>
         </div>
       </div>
     </form>

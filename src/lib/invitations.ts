@@ -59,10 +59,10 @@ function plantilla(p: { nombre: string; url: string; kind: InviteKind }): { subj
   const text = `Hola ${nombre},\n\n${intro}\n\n${p.url}\n\nEl enlace es de un solo uso y caduca pronto. Si ha caducado, pide una invitación nueva a quien te dio de alta.\n\nTu usuario es tu correo; la contraseña la eliges tú al abrir el enlace.\n\n${APP_NAME}`;
   const html = `<!doctype html><html lang="es"><body style="margin:0;background:#f1f5f9;font-family:Arial,Helvetica,sans-serif;color:#0f172a">
 <div style="max-width:520px;margin:32px auto;background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:32px">
-  <div style="font-size:20px;font-weight:600;color:#0f2a44;margin-bottom:16px">${escapeHtml(APP_NAME)}</div>
+  <div style="font-size:20px;font-weight:700;color:#6b2a7f;margin-bottom:16px">${escapeHtml(APP_NAME)}</div>
   <p style="font-size:15px;line-height:1.5">Hola ${escapeHtml(nombre)},</p>
   <p style="font-size:15px;line-height:1.5">${escapeHtml(intro)}</p>
-  <p style="margin:24px 0"><a href="${escapeHtml(p.url)}" style="display:inline-block;background:#0f2a44;color:#fff;text-decoration:none;padding:12px 20px;border-radius:8px;font-weight:600">Elegir mi contraseña</a></p>
+  <p style="margin:24px 0"><a href="${escapeHtml(p.url)}" style="display:inline-block;background:#fe2373;color:#fff;text-decoration:none;padding:12px 20px;border-radius:8px;font-weight:600">Elegir mi contraseña</a></p>
   <p style="font-size:13px;color:#475569;line-height:1.5">Tu usuario es tu correo. El enlace es de un solo uso y caduca pronto; si ha caducado, pide una invitación nueva a quien te dio de alta.</p>
   <p style="font-size:12px;color:#94a3b8;word-break:break-all">Si el botón no funciona, copia este enlace: ${escapeHtml(p.url)}</p>
 </div></body></html>`;

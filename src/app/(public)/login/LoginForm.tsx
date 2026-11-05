@@ -28,16 +28,16 @@ export function LoginForm({ next }: { next: string }) {
       <label className="block text-sm">
         <span className="text-slate-700">Correo</span>
         <input type="email" required autoComplete="username" value={email} onChange={(e) => setEmail(e.target.value)}
-          className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500" />
+          className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand/50" />
       </label>
       <label className="block text-sm">
         <span className="text-slate-700">Contraseña</span>
         <input type="password" required autoComplete="current-password" value={password} onChange={(e) => setPassword(e.target.value)}
-          className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500" />
+          className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand/50" />
       </label>
       {error && <p className="text-sm text-red-600">{error}</p>}
       <button type="submit" disabled={busy}
-        className="w-full rounded-md bg-[#0f2a44] text-white py-2 text-sm font-medium hover:bg-[#163a5c] disabled:opacity-60">
+        className="w-full rounded-md bg-brand text-white py-2 text-sm font-medium hover:bg-brand-dark disabled:opacity-60">
         {busy ? "Entrando…" : "Entrar"}
       </button>
     </form>

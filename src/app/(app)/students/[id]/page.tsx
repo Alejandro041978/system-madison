@@ -11,7 +11,7 @@ export const dynamic = "force-dynamic";
 
 type MatriculaRow = { id: string; status: string; enrollment_date: string; academic_programs: { code: string; name: string } | null; convocatorias: { name: string } | null };
 const ESTADO_LABEL: Record<string, string> = { pendiente_pago: "pendiente de pago", activa: "activa", retirada: "retirada", finalizada: "finalizada" };
-const ESTADO_CLS: Record<string, string> = { pendiente_pago: "text-amber-700", activa: "text-emerald-700", retirada: "text-red-700", finalizada: "text-sky-700" };
+const ESTADO_CLS: Record<string, string> = { pendiente_pago: "text-amber-700", activa: "text-emerald-700", retirada: "text-red-700", finalizada: "text-plum" };
 
 type AuditRow = { id: number; changed_by: string | null; action: string; changes: Record<string, { antes: unknown; despues: unknown }> | Record<string, unknown>; created_at: string };
 
@@ -37,7 +37,7 @@ export default async function StudentPage({ params }: PageProps<"/students/[id]"
 
   return (
     <div>
-      <Link href="/students" className="text-sm text-sky-700 hover:underline">← Estudiantes</Link>
+      <Link href="/students" className="text-sm text-plum hover:underline">← Estudiantes</Link>
       <div className="mt-2 mb-6 flex items-start justify-between">
         <div>
           <h1 className="text-2xl font-semibold">
@@ -61,13 +61,13 @@ export default async function StudentPage({ params }: PageProps<"/students/[id]"
             <ul className="divide-y divide-slate-100 text-sm">
               {((matriculas ?? []) as unknown as MatriculaRow[]).map((m) => (
                 <li key={m.id} className="px-4 py-2">
-                  <Link href={`/admissions/enrollments/${m.id}`} className="text-sky-800 hover:underline font-medium">
+                  <Link href={`/admissions/enrollments/${m.id}`} className="text-plum-dark hover:underline font-medium">
                     <span className="font-mono text-xs text-slate-500 mr-1">{m.academic_programs?.code}</span>{m.academic_programs?.name}
                   </Link>
                   <div className="text-xs text-slate-500">{m.convocatorias?.name} · {m.enrollment_date} · <span className={ESTADO_CLS[m.status] ?? ""}>{ESTADO_LABEL[m.status] ?? m.status}</span></div>
                 </li>
               ))}
-              {(matriculas ?? []).length === 0 && <li className="px-4 py-3 text-xs text-slate-400">Sin matrículas. Se crean desde <Link href="/admissions" className="text-sky-700 hover:underline">Admisión y matrícula</Link>.</li>}
+              {(matriculas ?? []).length === 0 && <li className="px-4 py-3 text-xs text-slate-400">Sin matrículas. Se crean desde <Link href="/admissions" className="text-plum hover:underline">Admisión y matrícula</Link>.</li>}
             </ul>
           </div>
           <div className="bg-white border border-slate-200 rounded-lg">

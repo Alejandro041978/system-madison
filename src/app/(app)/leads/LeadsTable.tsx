@@ -12,7 +12,7 @@ export type LeadRow = {
 
 const STAGES = ["nuevo", "contactable", "calificado", "interesado", "inscrito", "descartado"];
 const COLOR: Record<string, string> = {
-  nuevo: "bg-slate-100 text-slate-700", contactable: "bg-sky-100 text-sky-800", calificado: "bg-violet-100 text-violet-800",
+  nuevo: "bg-slate-100 text-slate-700", contactable: "bg-plum/10 text-plum-dark", calificado: "bg-violet-100 text-violet-800",
   interesado: "bg-amber-100 text-amber-800", inscrito: "bg-emerald-100 text-emerald-800", descartado: "bg-red-100 text-red-700",
 };
 const input = "rounded-md border border-slate-300 px-2 py-1 text-sm bg-white";
@@ -33,10 +33,10 @@ export function LeadsTable(p: { rows: LeadRow[]; stage: string; conteo: Record<s
     <div className="space-y-3">
       {error && <div className="rounded-md bg-red-50 border border-red-200 text-red-700 text-sm px-3 py-2">{error}</div>}
       <div className="flex flex-wrap gap-2 text-sm">
-        <button onClick={() => router.push("/leads")} className={`rounded-full px-3 py-1 border ${!p.stage ? "bg-[#0f2a44] text-white border-[#0f2a44]" : "bg-white border-slate-300"}`}>Todos</button>
+        <button onClick={() => router.push("/leads")} className={`rounded-full px-3 py-1 border ${!p.stage ? "bg-brand text-white border-brand" : "bg-white border-slate-300"}`}>Todos</button>
         {STAGES.map((s) => (
           <button key={s} onClick={() => router.push(`/leads?stage=${s}`)}
-            className={`rounded-full px-3 py-1 border capitalize ${p.stage === s ? "bg-[#0f2a44] text-white border-[#0f2a44]" : "bg-white border-slate-300"}`}>
+            className={`rounded-full px-3 py-1 border capitalize ${p.stage === s ? "bg-brand text-white border-brand" : "bg-white border-slate-300"}`}>
             {s}{p.conteo[s] ? ` (${p.conteo[s]})` : ""}
           </button>
         ))}

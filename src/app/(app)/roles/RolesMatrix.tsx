@@ -71,7 +71,7 @@ export function RolesMatrix(p: { roles: RoleRow[]; permissions: PermRow[]; pages
         <div className="bg-white border border-slate-200 rounded-lg overflow-hidden">
           {p.roles.map((r) => (
             <button key={r.id} onClick={() => setSelected(r.id)}
-              className={`w-full text-left px-4 py-2 text-sm border-b border-slate-100 last:border-0 ${r.id === selected ? "bg-sky-50 text-sky-900 font-medium" : "hover:bg-slate-50"}`}>
+              className={`w-full text-left px-4 py-2 text-sm border-b border-slate-100 last:border-0 ${r.id === selected ? "bg-sky-50 text-plum-dark font-medium" : "hover:bg-slate-50"}`}>
               {r.name}
             </button>
           ))}
@@ -81,7 +81,7 @@ export function RolesMatrix(p: { roles: RoleRow[]; permissions: PermRow[]; pages
           <form onSubmit={crearRol} className="flex gap-2">
             <input required placeholder="Nuevo rol" value={newName} onChange={(e) => setNewName(e.target.value)}
               className="flex-1 rounded-md border border-slate-300 px-2 py-1.5 text-sm" />
-            <button className="rounded-md bg-[#0f2a44] text-white px-2.5 py-1.5" title="Crear rol"><Plus className="h-4 w-4" /></button>
+            <button className="rounded-md bg-brand text-white px-2.5 py-1.5" title="Crear rol"><Plus className="h-4 w-4" /></button>
           </form>
         )}
       </div>

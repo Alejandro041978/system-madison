@@ -13,8 +13,8 @@ export default async function NoAccessPage({ searchParams }: PageProps<"/no-acce
   const page = typeof sp.page === "string" && (PAGE_KEYS as string[]).includes(sp.page) ? pageDef(sp.page as PageKey) : null;
 
   return (
-    <div className="flex-1 flex items-center justify-center p-6">
-      <div className="w-full max-w-md bg-white rounded-xl shadow-sm border border-slate-200 p-8 text-center">
+    <div className="flex-1 flex items-center justify-center p-6 bg-gradient-to-br from-plum via-plum-dark to-[#2a0f36]">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 text-center">
         <h1 className="text-xl font-semibold">Sin acceso</h1>
         {page ? (
           <p className="mt-2 text-sm text-slate-600">Tu rol no tiene permiso para ver «{page.label}».</p>
@@ -24,7 +24,7 @@ export default async function NoAccessPage({ searchParams }: PageProps<"/no-acce
           </p>
         )}
         <form action="/api/auth/signout" method="post" className="mt-6">
-          <button className="text-sm text-sky-700 hover:underline">Cerrar sesión</button>
+          <button className="text-sm text-plum hover:underline">Cerrar sesión</button>
         </form>
       </div>
     </div>

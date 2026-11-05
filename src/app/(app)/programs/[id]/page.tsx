@@ -39,7 +39,7 @@ export default async function ProgramDetailPage({ params }: PageProps<"/programs
 
   return (
     <div>
-      <Link href="/programs" className="text-sm text-sky-700 hover:underline">← Programas</Link>
+      <Link href="/programs" className="text-sm text-plum hover:underline">← Programas</Link>
       <ProgramHeader program={program} categories={cats.data ?? []} canEdit={canEdit} />
 
       <div className="grid grid-cols-3 gap-4 my-6">
@@ -69,7 +69,7 @@ export default async function ProgramDetailPage({ params }: PageProps<"/programs
           ) : (
             <div className="text-sm text-red-700 mt-1">Sin tarifa: no se podrá matricular.</div>
           )}
-          <Link href={`/rates?program_id=${id}`} className="text-xs text-sky-700 hover:underline">ver historial / nueva versión</Link>
+          <Link href={`/rates?program_id=${id}`} className="text-xs text-plum hover:underline">ver historial / nueva versión</Link>
         </div>
       </div>
 

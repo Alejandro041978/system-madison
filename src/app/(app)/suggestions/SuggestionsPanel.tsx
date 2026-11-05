@@ -53,10 +53,10 @@ export function SuggestionsPanel(p: {
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap items-center gap-2 text-sm">
-        <button onClick={() => go("", p.status)} className={`rounded-full px-3 py-1 border ${!p.bot ? "bg-[#0f2a44] text-white border-[#0f2a44]" : "bg-white border-slate-300"}`}>Todos</button>
+        <button onClick={() => go("", p.status)} className={`rounded-full px-3 py-1 border ${!p.bot ? "bg-brand text-white border-brand" : "bg-white border-slate-300"}`}>Todos</button>
         {p.bots.map((b) => (
           <button key={b.key} onClick={() => go(b.key, p.status)}
-            className={`rounded-full px-3 py-1 border ${p.bot === b.key ? "bg-[#0f2a44] text-white border-[#0f2a44]" : "bg-white border-slate-300"}`}>
+            className={`rounded-full px-3 py-1 border ${p.bot === b.key ? "bg-brand text-white border-brand" : "bg-white border-slate-300"}`}>
             {b.name}{p.conteo[b.key] ? <span className="ml-1.5 rounded-full bg-amber-400 text-amber-950 px-1.5 text-xs font-semibold">{p.conteo[b.key]}</span> : null}
           </button>
         ))}
@@ -87,7 +87,7 @@ export function SuggestionsPanel(p: {
                 <textarea rows={6} className={input} value={editando.content ?? ""} onChange={(e) => setEditando({ ...editando, content: e.target.value })} />
                 <div className="flex gap-3 justify-end">
                   <button onClick={() => setEditando(null)} className="text-sm text-slate-500 hover:underline">Cancelar</button>
-                  <button onClick={guardarEdicion} className="rounded-md bg-[#0f2a44] text-white px-3 py-1 text-sm">Guardar</button>
+                  <button onClick={guardarEdicion} className="rounded-md bg-brand text-white px-3 py-1 text-sm">Guardar</button>
                 </div>
               </div>
             ) : (
@@ -95,7 +95,7 @@ export function SuggestionsPanel(p: {
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0">
                     <div className="flex items-center gap-2">
-                      {s.type === "knowledge" ? <BookOpen className="h-4 w-4 text-violet-600" /> : <MessageSquareText className="h-4 w-4 text-sky-600" />}
+                      {s.type === "knowledge" ? <BookOpen className="h-4 w-4 text-violet-600" /> : <MessageSquareText className="h-4 w-4 text-plum" />}
                       <span className="font-medium">{s.title}</span>
                       <span className="rounded bg-slate-100 text-slate-600 px-1.5 py-0.5 text-xs">{s.bot_key}</span>
                       <span className="text-xs text-slate-400">{s.report_date}</span>

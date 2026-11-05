@@ -17,7 +17,7 @@ export default async function EnrollmentRequestsPage() {
 
   return (
     <div>
-      <Link href="/leads" className="text-sm text-sky-700 hover:underline">← Leads</Link>
+      <Link href="/leads" className="text-sm text-plum hover:underline">← Leads</Link>
       <div className="mt-2 mb-4 flex items-end justify-between">
         <div>
           <h1 className="text-2xl font-semibold">Fichas de inscripción</h1>

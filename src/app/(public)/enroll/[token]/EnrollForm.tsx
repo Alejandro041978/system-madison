@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-const input = "rounded-md border border-slate-300 px-3 py-2 text-sm bg-white w-full focus:outline-none focus:ring-2 focus:ring-sky-500";
+const input = "rounded-md border border-slate-300 px-3 py-2 text-sm bg-white w-full focus:outline-none focus:ring-2 focus:ring-brand/50";
 
 type Datos = {
   full_name: string; document_type: string; document_number: string; email: string;
@@ -66,7 +66,7 @@ export function EnrollForm(p: {
             </p>
             {p.paymentUrl && (
               <a href={p.paymentUrl} target="_blank" rel="noreferrer"
-                className="mt-4 block w-full text-center rounded-lg bg-[#0f2a44] text-white py-3 font-medium hover:bg-[#163a5c]">
+                className="mt-4 block w-full text-center rounded-lg bg-brand text-white py-3 font-medium hover:bg-brand-dark">
                 Pagar matrícula de {importe} →
               </a>
             )}
@@ -131,7 +131,7 @@ export function EnrollForm(p: {
         <input type="checkbox" checked={acepta} onChange={(e) => setAcepta(e.target.checked)} className="mt-0.5" />
         <span>Acepto que {p.appName} trate mis datos para gestionar mi admisión y me contacte por WhatsApp o correo. La admisión está sujeta a la evaluación de antecedentes.</span>
       </label>
-      <button disabled={busy || !acepta} className="w-full rounded-lg bg-[#0f2a44] text-white py-3 font-medium hover:bg-[#163a5c] disabled:opacity-50">
+      <button disabled={busy || !acepta} className="w-full rounded-lg bg-brand text-white py-3 font-medium hover:bg-brand-dark disabled:opacity-50">
         {busy ? "Enviando…" : hayPago ? "Enviar ficha y pasar al pago" : "Enviar ficha"}
       </button>
     </form>

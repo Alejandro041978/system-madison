@@ -51,7 +51,7 @@ export function WithdrawalPanel(p: { enrollment: Enrollment; withdrawals: Withdr
           )}
           {p.canEdit && mode === "none" && (
             <div className="flex gap-3 pt-1">
-              {exigePago && !vigente.return_fee_paid_at && <button onClick={() => setMode("pago")} className="text-sm text-sky-700 hover:underline">Registrar pago del trámite</button>}
+              {exigePago && !vigente.return_fee_paid_at && <button onClick={() => setMode("pago")} className="text-sm text-plum hover:underline">Registrar pago del trámite</button>}
               <button onClick={() => setMode("retorno")} disabled={!tramitePagado} title={!tramitePagado ? "Primero registra el pago del trámite" : ""}
                 className="text-sm text-emerald-700 hover:underline disabled:opacity-50 disabled:no-underline">Registrar retorno</button>
             </div>
@@ -67,7 +67,7 @@ export function WithdrawalPanel(p: { enrollment: Enrollment; withdrawals: Withdr
           <input type="date" className={input} value={f.paid_at} onChange={(e) => setF({ ...f, paid_at: e.target.value })} />
           <div className="flex gap-3 justify-end">
             <button onClick={() => setMode("none")} className="text-slate-500 hover:underline">Cancelar</button>
-            <button onClick={() => post("/api/admissions/withdrawals/fee", { withdrawal_id: vigente.id, reference: f.reference, paid_at: f.paid_at || undefined })} disabled={!f.reference.trim()} className="rounded-md bg-[#0f2a44] text-white px-3 py-1 disabled:opacity-50">Guardar pago</button>
+            <button onClick={() => post("/api/admissions/withdrawals/fee", { withdrawal_id: vigente.id, reference: f.reference, paid_at: f.paid_at || undefined })} disabled={!f.reference.trim()} className="rounded-md bg-brand text-white px-3 py-1 disabled:opacity-50">Guardar pago</button>
           </div>
         </div>
       )}

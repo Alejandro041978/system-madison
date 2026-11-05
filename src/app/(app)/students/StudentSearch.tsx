@@ -11,7 +11,7 @@ export function StudentSearch({ q, all }: { q: string; all: boolean }) {
       <label className="text-xs text-slate-500 flex items-center gap-1.5">
         <input type="checkbox" name="all" value="1" defaultChecked={all} /> incluir deshabilitados
       </label>
-      <button className="rounded-md bg-[#0f2a44] text-white px-3 py-1.5 text-sm">Buscar</button>
+      <button className="rounded-md bg-brand text-white px-3 py-1.5 text-sm">Buscar</button>
     </form>
   );
 }

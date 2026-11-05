@@ -13,7 +13,7 @@ export default async function DebtReportPage() {
 
   return (
     <div>
-      <Link href="/accounts" className="text-sm text-sky-700 hover:underline">← Estados de cuenta</Link>
+      <Link href="/accounts" className="text-sm text-plum hover:underline">← Estados de cuenta</Link>
       <div className="mt-2 mb-4">
         <h1 className="text-2xl font-semibold">Reporte de deuda</h1>
         <p className="text-sm text-slate-500">Matrículas vivas con cargos, ordenadas por vencido y saldo.</p>
@@ -48,7 +48,7 @@ export default async function DebtReportPage() {
           <tbody className="divide-y divide-slate-100">
             {r.filas.map((f) => (
               <tr key={f.enrollment_id} className={f.vencido > 0 ? "bg-red-50/40" : ""}>
-                <td className="px-4 py-2"><Link href={`/accounts/${f.enrollment_id}`} className="font-medium text-sky-800 hover:underline">{f.student}</Link></td>
+                <td className="px-4 py-2"><Link href={`/accounts/${f.enrollment_id}`} className="font-medium text-plum-dark hover:underline">{f.student}</Link></td>
                 <td className="px-4 py-2 text-slate-600">{f.program}</td>
                 <td className="px-4 py-2 text-slate-600">{f.categoria}</td>
                 <td className="px-4 py-2 text-right">{money(f.facturado)}</td>

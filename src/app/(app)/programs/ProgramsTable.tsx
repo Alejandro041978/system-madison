@@ -43,7 +43,7 @@ export function ProgramsTable(p: {
         {p.canEdit && !showNew && (
           <button onClick={() => setShowNew(true)} disabled={p.categories.length === 0}
             title={p.categories.length === 0 ? "Crea primero una categoría" : ""}
-            className="inline-flex items-center gap-1.5 rounded-md bg-[#0f2a44] text-white px-3 py-1.5 text-sm hover:bg-[#163a5c] disabled:opacity-50">
+            className="inline-flex items-center gap-1.5 rounded-md bg-brand text-white px-3 py-1.5 text-sm hover:bg-brand-dark disabled:opacity-50">
             <Plus className="h-4 w-4" /> Nuevo programa
           </button>
         )}
@@ -67,7 +67,7 @@ export function ProgramsTable(p: {
           <label className="text-sm flex items-center gap-2 pb-2">
             <input type="checkbox" checked={nuevo.partner_campus} onChange={(e) => setNuevo({ ...nuevo, partner_campus: e.target.checked })} /> Campus socio
           </label>
-          <button className="rounded-md bg-[#0f2a44] text-white px-3 py-1.5 text-sm">Crear y abrir malla</button>
+          <button className="rounded-md bg-brand text-white px-3 py-1.5 text-sm">Crear y abrir malla</button>
           <button type="button" onClick={() => setShowNew(false)} className="text-sm text-slate-500 hover:underline">Cancelar</button>
         </form>
       )}
@@ -90,7 +90,7 @@ export function ProgramsTable(p: {
               return (
                 <tr key={r.id} className={r.active ? "" : "text-slate-400"}>
                   <td className="px-4 py-2 font-mono text-xs">{r.code}</td>
-                  <td className="px-4 py-2"><Link href={`/programs/${r.id}`} className="font-medium text-sky-800 hover:underline">{r.name}</Link>
+                  <td className="px-4 py-2"><Link href={`/programs/${r.id}`} className="font-medium text-plum-dark hover:underline">{r.name}</Link>
                     {r.partner_campus && <span className="ml-2 rounded bg-violet-100 text-violet-800 px-1.5 py-0.5 text-xs">campus socio</span>}</td>
                   <td className="px-4 py-2">{catName(r.category_id)}</td>
                   <td className="px-4 py-2 text-right">{s.n}</td>

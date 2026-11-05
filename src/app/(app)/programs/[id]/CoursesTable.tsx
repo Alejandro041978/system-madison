@@ -58,7 +58,7 @@ export function CoursesTable(p: { programId: string; rows: CourseRow[]; canEdit:
       <div className="flex items-center justify-between">
         <h2 className="text-lg font-semibold">Malla curricular</h2>
         {p.canEdit && !showNew && (
-          <button onClick={() => setShowNew(true)} className="inline-flex items-center gap-1.5 rounded-md bg-[#0f2a44] text-white px-3 py-1.5 text-sm hover:bg-[#163a5c]">
+          <button onClick={() => setShowNew(true)} className="inline-flex items-center gap-1.5 rounded-md bg-brand text-white px-3 py-1.5 text-sm hover:bg-brand-dark">
             <Plus className="h-4 w-4" /> Nueva asignatura
           </button>
         )}
@@ -79,7 +79,7 @@ export function CoursesTable(p: { programId: string; rows: CourseRow[]; canEdit:
             <input type="number" step="1" min="0" className={`${input} w-20`} value={nuevo.hours} onChange={(e) => setNuevo({ ...nuevo, hours: e.target.value })} /></label>
           <label className="text-sm flex items-center gap-1.5 pb-1.5"><input type="checkbox" checked={nuevo.graduation_requirement} onChange={(e) => setNuevo({ ...nuevo, graduation_requirement: e.target.checked })} /> Requisito grado</label>
           <label className="text-sm flex items-center gap-1.5 pb-1.5"><input type="checkbox" checked={nuevo.is_capstone} onChange={(e) => setNuevo({ ...nuevo, is_capstone: e.target.checked })} /> Capstone/TFM</label>
-          <button className="rounded-md bg-[#0f2a44] text-white px-3 py-1.5 text-sm">Añadir</button>
+          <button className="rounded-md bg-brand text-white px-3 py-1.5 text-sm">Añadir</button>
           <button type="button" onClick={() => setShowNew(false)} className="text-sm text-slate-500 hover:underline">Cerrar</button>
         </form>
       )}

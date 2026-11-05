@@ -8,7 +8,7 @@ const ESTADO: Record<string, { label: string; cls: string }> = {
   enviada: { label: "Enviada (sin completar)", cls: "bg-slate-100 text-slate-700" },
   completada: { label: "Completada · verificar pago", cls: "bg-amber-100 text-amber-800" },
   pagada: { label: "Pago confirmado", cls: "bg-emerald-100 text-emerald-800" },
-  formalizada: { label: "Formalizada", cls: "bg-sky-100 text-sky-800" },
+  formalizada: { label: "Formalizada", cls: "bg-plum/10 text-plum-dark" },
   anulada: { label: "Anulada", cls: "bg-red-100 text-red-700" },
 };
 
@@ -68,7 +68,7 @@ export function RequestsTable(p: { filas: EnrollmentRequest[]; canEdit: boolean 
                     )}
                     {r.status === "pagada" && (
                       <button disabled={busy === r.id} onClick={() => decidir(r, "formalizar", "¿Marcar como formalizada? (matrícula ya creada en Admisión)")}
-                        className="rounded-md bg-sky-600 text-white px-2 py-1 hover:bg-sky-700">Formalizada en Admisión</button>
+                        className="rounded-md bg-plum text-white px-2 py-1 hover:bg-plum-dark">Formalizada en Admisión</button>
                     )}
                     {!["formalizada", "anulada"].includes(r.status) && (
                       <button disabled={busy === r.id} onClick={() => decidir(r, "anular", "¿Anular esta ficha? El enlace dejará de funcionar.")}

@@ -1,5 +1,6 @@
-import Link from "next/link";
+import Image from "next/image";
 import { APP_NAME } from "@/lib/config";
+import { NavLink } from "@/components/NavLink";
 import { Home, Users, ShieldCheck, ScrollText, LogOut, Eye, Layers, GraduationCap, BadgeEuro, UserRound, ClipboardList, Wallet, Bot, Users2, Sparkles, Megaphone, BarChart3 } from "lucide-react";
 import { PAGES, type PageDef } from "@/lib/pages";
 import { puedeVerPagina } from "@/lib/api-guard";
@@ -18,25 +19,25 @@ export function Sidebar({ identity }: { identity: Identity }) {
   const grupos = [...new Set(visibles.map((p) => p.group))];
 
   return (
-    <aside className="w-64 shrink-0 bg-[#0f2a44] text-slate-100 flex flex-col min-h-screen">
+    <aside className="w-64 shrink-0 bg-gradient-to-b from-plum to-plum-dark text-white flex flex-col min-h-screen">
       <div className="px-5 py-5 border-b border-white/10">
-        <div className="text-lg font-semibold tracking-tight">{APP_NAME}</div>
-        <div className="text-xs text-slate-400">Gestión académica</div>
+        <Image src="/brand/logo-white.png" alt={APP_NAME} width={612} height={194} priority className="h-9 w-auto" />
+        <div className="mt-2 text-[11px] uppercase tracking-wider text-white/60">Gestión académica</div>
       </div>
 
       <nav className="flex-1 px-3 py-4 space-y-5">
         {grupos.map((g) => (
           <div key={g}>
-            <div className="px-2 mb-1 text-[11px] uppercase tracking-wider text-slate-400">{g}</div>
+            <div className="px-2 mb-1 text-[11px] uppercase tracking-wider text-white/50">{g}</div>
             <ul className="space-y-0.5">
               {visibles.filter((p) => p.group === g).map((p) => {
                 const Icon = ICONS[p.icon];
                 return (
                   <li key={p.key}>
-                    <Link href={p.href} className="flex items-center gap-2.5 rounded-md px-2 py-1.5 text-sm hover:bg-white/10">
-                      <Icon className="h-4 w-4 text-slate-300" />
+                    <NavLink href={p.href}>
+                      <Icon className="h-4 w-4 text-lime/90 group-hover:text-lime" />
                       {p.label}
-                    </Link>
+                    </NavLink>
                   </li>
                 );
               })}
@@ -47,8 +48,8 @@ export function Sidebar({ identity }: { identity: Identity }) {
 
       <div className="px-4 py-4 border-t border-white/10 text-sm">
         <div className="font-medium truncate">{identity.employee.full_name}</div>
-        <div className="text-xs text-slate-400 truncate">{identity.email}</div>
-        <div className="mt-1 text-xs text-slate-300">
+        <div className="text-xs text-white/60 truncate">{identity.email}</div>
+        <div className="mt-1 inline-block rounded-full bg-brand/90 px-2 py-0.5 text-[11px] font-medium text-white">
           {identity.isSuperadmin ? "Superadmin" : identity.role?.name ?? "Sin rol asignado"}
         </div>
         {identity.impersonatedBy && (
@@ -60,7 +61,7 @@ export function Sidebar({ identity }: { identity: Identity }) {
           </form>
         )}
         <form action="/api/auth/signout" method="post" className="mt-3">
-          <button className="flex items-center gap-1.5 text-xs text-slate-300 hover:text-white">
+          <button className="flex items-center gap-1.5 text-xs text-white/70 hover:text-white">
             <LogOut className="h-3.5 w-3.5" /> Cerrar sesión
           </button>
         </form>

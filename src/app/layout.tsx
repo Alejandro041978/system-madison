@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { APP_NAME } from "@/lib/config";
@@ -10,6 +10,8 @@ export const metadata: Metadata = {
   title: { default: APP_NAME, template: `%s · ${APP_NAME}` },
   description: "ERP de gestión académica",
 };
+
+export const viewport: Viewport = { themeColor: "#6b2a7f" };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (

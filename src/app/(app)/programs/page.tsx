@@ -44,7 +44,7 @@ export default async function ProgramsPage() {
                 {h.severidad === "bloquea" ? <AlertTriangle className="h-4 w-4 text-red-600 mt-0.5 shrink-0" /> : <Info className="h-4 w-4 text-amber-600 mt-0.5 shrink-0" />}
                 <span>
                   {h.mensaje}
-                  {h.programa_id && <Link href={`/programs/${h.programa_id}`} className="ml-2 text-sky-700 hover:underline text-xs">abrir</Link>}
+                  {h.programa_id && <Link href={`/programs/${h.programa_id}`} className="ml-2 text-plum hover:underline text-xs">abrir</Link>}
                 </span>
               </li>
             ))}

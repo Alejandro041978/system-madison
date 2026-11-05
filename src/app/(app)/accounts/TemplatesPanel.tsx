@@ -43,7 +43,7 @@ export function TemplatesPanel(p: { templates: TemplateRow[]; targets: TargetRow
       {error && <div className="rounded-md bg-red-50 border border-red-200 text-red-700 text-sm px-3 py-2">{error}</div>}
 
       {p.canEdit && (!showNew ? (
-        <button onClick={() => setShowNew(true)} className="inline-flex items-center gap-1.5 rounded-md bg-[#0f2a44] text-white px-3 py-1.5 text-sm hover:bg-[#163a5c]">
+        <button onClick={() => setShowNew(true)} className="inline-flex items-center gap-1.5 rounded-md bg-brand text-white px-3 py-1.5 text-sm hover:bg-brand-dark">
           <Plus className="h-4 w-4" /> Nueva plantilla
         </button>
       ) : (
@@ -53,7 +53,7 @@ export function TemplatesPanel(p: { templates: TemplateRow[]; targets: TargetRow
           <label><div className="text-slate-600 mb-1">Nº de cuotas</div><input type="number" min="1" required className={`${input} w-24`} value={f.installments} onChange={(e) => setF({ ...f, installments: e.target.value })} /></label>
           <label><div className="text-slate-600 mb-1">Cada (meses)</div><input type="number" min="1" className={`${input} w-24`} value={f.frequency_months} onChange={(e) => setF({ ...f, frequency_months: e.target.value })} /></label>
           <label><div className="text-slate-600 mb-1">1.ª cuota (meses tras inicio)</div><input type="number" min="0" className={`${input} w-24`} value={f.first_installment_offset_months} onChange={(e) => setF({ ...f, first_installment_offset_months: e.target.value })} /></label>
-          <button className="rounded-md bg-[#0f2a44] text-white px-3 py-1.5">Crear</button>
+          <button className="rounded-md bg-brand text-white px-3 py-1.5">Crear</button>
           <button type="button" onClick={() => setShowNew(false)} className="text-slate-500 hover:underline">Cancelar</button>
         </form>
       ))}

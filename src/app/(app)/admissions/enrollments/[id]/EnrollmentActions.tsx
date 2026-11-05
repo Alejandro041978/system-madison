@@ -33,7 +33,7 @@ export function EnrollmentActions({ enrollment, canEdit }: { enrollment: Enrollm
           {error && <div className="text-xs text-red-600">{error}</div>}
           <div className="flex gap-3 justify-end">
             <button onClick={() => setOpen(false)} className="text-sm text-slate-500 hover:underline">Cancelar</button>
-            <button onClick={activar} disabled={!note.trim()} className="rounded-md bg-[#0f2a44] text-white px-3 py-1 text-sm disabled:opacity-50">Activar</button>
+            <button onClick={activar} disabled={!note.trim()} className="rounded-md bg-brand text-white px-3 py-1 text-sm disabled:opacity-50">Activar</button>
           </div>
         </div>
       )}

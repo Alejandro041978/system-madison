@@ -56,7 +56,7 @@ export function BotsPanel(p: { bots: BotRow[]; selected: string; articulos: Arti
       <div className="space-y-1">
         {p.bots.map((b) => (
           <button key={b.key} onClick={() => { router.push(`/bots?bot=${b.key}`); setPrueba(null); setEditPrompt(false); setPrompt(""); }}
-            className={`w-full text-left rounded-md px-3 py-2 text-sm border ${b.key === p.selected ? "bg-sky-50 border-sky-200 text-sky-900" : "bg-white border-slate-200 hover:bg-slate-50"} ${b.active ? "" : "opacity-60"}`}>
+            className={`w-full text-left rounded-md px-3 py-2 text-sm border ${b.key === p.selected ? "bg-sky-50 border-plum/20 text-plum-dark" : "bg-white border-slate-200 hover:bg-slate-50"} ${b.active ? "" : "opacity-60"}`}>
             <div className="font-medium">{b.name}</div>
             <div className="text-xs text-slate-500">{ROL[b.role] ?? b.role} · {b.twilio_number ?? "sin número"}{!b.active && " · inactivo"}</div>
           </button>
@@ -87,14 +87,14 @@ export function BotsPanel(p: { bots: BotRow[]; selected: string; articulos: Arti
             <div>
               <div className="flex items-center justify-between">
                 <div className="text-sm text-slate-600">Prompt vigente</div>
-                {p.canEdit && !editPrompt && <button onClick={() => { setPrompt(bot.prompt); setEditPrompt(true); }} className="text-sm text-sky-700 hover:underline inline-flex items-center gap-1"><Pencil className="h-3.5 w-3.5" /> Editar</button>}
+                {p.canEdit && !editPrompt && <button onClick={() => { setPrompt(bot.prompt); setEditPrompt(true); }} className="text-sm text-plum hover:underline inline-flex items-center gap-1"><Pencil className="h-3.5 w-3.5" /> Editar</button>}
               </div>
               {editPrompt ? (
                 <div className="mt-1 space-y-2">
                   <textarea rows={8} className={`${input} w-full font-mono text-xs`} value={prompt} onChange={(e) => setPrompt(e.target.value)} />
                   <div className="flex gap-3 justify-end">
                     <button onClick={() => setEditPrompt(false)} className="text-sm text-slate-500 hover:underline">Cancelar</button>
-                    <button onClick={() => guardarBot({ prompt })} disabled={busy} className="rounded-md bg-[#0f2a44] text-white px-3 py-1 text-sm">Guardar prompt</button>
+                    <button onClick={() => guardarBot({ prompt })} disabled={busy} className="rounded-md bg-brand text-white px-3 py-1 text-sm">Guardar prompt</button>
                   </div>
                 </div>
               ) : (
@@ -110,7 +110,7 @@ export function BotsPanel(p: { bots: BotRow[]; selected: string; articulos: Arti
                 <div className="flex gap-3">
                   <button onClick={async () => { const r = await call("/api/bots/knowledge/reindex", "POST", { bot_key: bot.key }); if (r) setAviso(`Reindexado: ${r.articulos} artículos, ${r.conEmbedding}/${r.chunks} trozos con embedding.`); }}
                     disabled={busy} className="inline-flex items-center gap-1 text-sm text-slate-600 hover:underline"><RefreshCw className="h-3.5 w-3.5" /> Reindexar todo</button>
-                  {!showNew && <button onClick={() => setShowNew(true)} className="inline-flex items-center gap-1 text-sm text-sky-700 hover:underline"><Plus className="h-4 w-4" /> Nuevo artículo</button>}
+                  {!showNew && <button onClick={() => setShowNew(true)} className="inline-flex items-center gap-1 text-sm text-plum hover:underline"><Plus className="h-4 w-4" /> Nuevo artículo</button>}
                 </div>
               )}
             </div>
@@ -133,7 +133,7 @@ export function BotsPanel(p: { bots: BotRow[]; selected: string; articulos: Arti
                       ? await call("/api/bots/knowledge", "PATCH", { id: editArt.id, title: editArt.title, category: editArt.category, content: editArt.content })
                       : await call("/api/bots/knowledge", "POST", { bot_key: bot.key, ...art });
                     if (r) { setShowNew(false); setEditArt(null); setArt({ title: "", category: "", content: "" }); setAviso("Guardado e indexado."); }
-                  }} className="rounded-md bg-[#0f2a44] text-white px-3 py-1 text-sm">Guardar e indexar</button>
+                  }} className="rounded-md bg-brand text-white px-3 py-1 text-sm">Guardar e indexar</button>
                 </div>
               </div>
             )}

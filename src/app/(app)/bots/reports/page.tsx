@@ -28,7 +28,7 @@ export default async function ReportsPage({ searchParams }: PageProps<"/bots/rep
 
   return (
     <div>
-      <Link href="/bots" className="text-sm text-sky-700 hover:underline">← Bots</Link>
+      <Link href="/bots" className="text-sm text-plum hover:underline">← Bots</Link>
       <h1 className="mt-2 mb-1 text-2xl font-semibold">Reportes del supervisor</h1>
       <p className="text-sm text-slate-500 mb-4">El evaluador analiza cada noche las conversaciones del día anterior. Sus sugerencias se aprueban en Mejora continua (Módulo 6).</p>
 

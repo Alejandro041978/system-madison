@@ -24,14 +24,14 @@ export default async function ConversationsPage({ searchParams }: PageProps<"/bo
 
   return (
     <div>
-      <Link href="/bots" className="text-sm text-sky-700 hover:underline">← Bots</Link>
+      <Link href="/bots" className="text-sm text-plum hover:underline">← Bots</Link>
       <div className="mt-2 mb-4 flex items-end justify-between">
         <h1 className="text-2xl font-semibold">Conversaciones</h1>
         <div className="flex gap-2 text-sm">
-          <Link href="/bots/conversations" className={`rounded-full px-3 py-1 border ${!bot ? "bg-[#0f2a44] text-white border-[#0f2a44]" : "bg-white border-slate-300"}`}>Todos</Link>
+          <Link href="/bots/conversations" className={`rounded-full px-3 py-1 border ${!bot ? "bg-brand text-white border-brand" : "bg-white border-slate-300"}`}>Todos</Link>
           {(bots ?? []).map((b) => (
             <Link key={b.key} href={`/bots/conversations?bot=${b.key}`}
-              className={`rounded-full px-3 py-1 border ${bot === b.key ? "bg-[#0f2a44] text-white border-[#0f2a44]" : "bg-white border-slate-300"}`}>{b.name}</Link>
+              className={`rounded-full px-3 py-1 border ${bot === b.key ? "bg-brand text-white border-brand" : "bg-white border-slate-300"}`}>{b.name}</Link>
           ))}
         </div>
       </div>

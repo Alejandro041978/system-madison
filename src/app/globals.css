@@ -1,11 +1,36 @@
 @import "tailwindcss";
 
+/*
+ * Identidad Madison OK (2026-11-05), tomada del logotipo y la gráfica de
+ * marca: rosa (acción principal), morado (estructura: sidebar, títulos,
+ * enlaces) y lima (acento puntual). Ningún componente escribe un color de
+ * marca a mano: usa estos tokens (bg-brand, text-plum, border-lime…).
+ */
 @theme inline {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  --color-brand: #fe2373;        /* rosa del logotipo */
+  --color-brand-dark: #d8105a;   /* hover de la acción principal */
+  --color-brand-soft: #fff0f5;   /* fondos suaves rosados */
+  --color-plum: #6b2a7f;         /* morado principal */
+  --color-plum-dark: #4a1a5e;    /* morado profundo (sidebar) */
+  --color-plum-light: #923ca4;   /* morado claro (hover, iconos) */
+  --color-lime: #90c830;         /* verde lima de la gráfica */
 }
 
 body {
-  background: #f4f5f7;
+  background: #f6f4f8;
   color: #1f2328;
+}
+
+/* Enlaces de texto: morado, subrayado solo al pasar. */
+a {
+  text-decoration-color: color-mix(in srgb, var(--color-plum) 40%, transparent);
+}
+
+/* Scrollbars discretos en paneles largos. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #cfc6d6 transparent;
 }

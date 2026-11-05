@@ -50,11 +50,11 @@ export function StudentForm({ student, canEdit }: { student: Student; canEdit: b
     <form onSubmit={guardar} className="bg-white border border-slate-200 rounded-lg">
       <div className="px-4 py-2 border-b border-slate-200 flex items-center justify-between">
         <div className="text-sm font-medium">Datos de la ficha</div>
-        {canEdit && !editing && <button type="button" onClick={() => { setEditing(true); setOk(false); }} className="text-sm text-sky-700 hover:underline">Editar</button>}
+        {canEdit && !editing && <button type="button" onClick={() => { setEditing(true); setOk(false); }} className="text-sm text-plum hover:underline">Editar</button>}
         {editing && (
           <div className="flex gap-3">
             <button type="button" onClick={() => { setF(toForm(student)); setEditing(false); setError(null); }} className="text-sm text-slate-500 hover:underline">Cancelar</button>
-            <button className="rounded-md bg-[#0f2a44] text-white px-3 py-1 text-sm">Guardar</button>
+            <button className="rounded-md bg-brand text-white px-3 py-1 text-sm">Guardar</button>
           </div>
         )}
       </div>
