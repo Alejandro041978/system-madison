@@ -1,4 +1,5 @@
 import "server-only";
+import { APP_URL } from "@/lib/config";
 import { createHmac, timingSafeEqual } from "node:crypto";
 
 /**
@@ -54,8 +55,8 @@ export async function enviarWhatsApp(p: { to: string; from: string; body?: strin
   if (!sid || !token) return { ok: false, error: "Twilio sin configurar" };
   const form = new URLSearchParams({ To: p.to, From: p.from });
   // 2026-10-02: sin StatusCallback no sabíamos si un envío llegó (93 de 500 no se entregaron y figuraban «enviados»).
-  const app = process.env.NEXT_PUBLIC_APP_URL?.replace(/\/+$/, "");
-  if (app?.startsWith("https://")) form.set("StatusCallback", `${app}/api/whatsapp/status`);
+  // Un dato, una función: la URL pública sale de config (con respaldo a la de Vercel).
+  if (APP_URL.startsWith("https://")) form.set("StatusCallback", `${APP_URL}/api/whatsapp/status`);
   if (p.contentSid) {
     form.set("ContentSid", p.contentSid);
     if (p.contentVariables) form.set("ContentVariables", JSON.stringify(p.contentVariables));
