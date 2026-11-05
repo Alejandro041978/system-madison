@@ -31,8 +31,18 @@ export const PAYMENT_URL = process.env.PAYMENT_URL?.trim() || "";
 /** Nombre de la pasarela de pago, para los textos (ej. «Flywire», «Stripe»). */
 export const PAYMENT_PROVIDER = process.env.PAYMENT_PROVIDER?.trim() || "la pasarela de pago";
 
-/** URL pública de la app (enlaces que salen por WhatsApp y correo). */
-export const APP_URL = (process.env.NEXT_PUBLIC_APP_URL?.trim() || "http://localhost:3000").replace(/\/$/, "");
+/**
+ * URL pública de la app (enlaces que salen por WhatsApp y correo).
+ * Orden: NEXT_PUBLIC_APP_URL → URL de producción que Vercel expone sola
+ * (VERCEL_PROJECT_PRODUCTION_URL, sin esquema) → localhost.
+ * 2026-11-05: una invitación salió con http://localhost:3000 porque la
+ * variable no estaba definida en Vercel; el respaldo evita repetirlo.
+ */
+export const APP_URL = (
+  process.env.NEXT_PUBLIC_APP_URL?.trim()
+  || (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : "")
+  || "http://localhost:3000"
+).replace(/\/$/, "");
 
 /** Formato de importe con la moneda configurada. */
 export const money = (n: number, cur = APP_CURRENCY) =>
