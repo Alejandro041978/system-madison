@@ -48,7 +48,7 @@ export function NewEnrollmentForm(p: { convocatoria: { id: string; name: string;
   if (!open) {
     return (
       <button onClick={() => setOpen(true)} disabled={p.programs.length === 0} title={p.programs.length === 0 ? "No hay programas activos en esta categoría" : ""}
-        className="inline-flex items-center gap-1.5 rounded-md bg-[#0f2a44] text-white px-3 py-1.5 text-sm hover:bg-[#163a5c] disabled:opacity-50">
+        className="inline-flex items-center gap-1.5 rounded-md bg-brand text-white px-3 py-1.5 text-sm hover:bg-brand-dark disabled:opacity-50">
         <Plus className="h-4 w-4" /> Nueva matrícula
       </button>
     );
@@ -81,7 +81,7 @@ export function NewEnrollmentForm(p: { convocatoria: { id: string; name: string;
                     ))}
                   </ul>
                 )}
-                <div className="mt-1 text-xs text-slate-400">¿No existe? Créalo primero en <Link href="/students" className="text-sky-700 hover:underline">Estudiantes</Link>.</div>
+                <div className="mt-1 text-xs text-slate-400">¿No existe? Créalo primero en <Link href="/students" className="text-plum hover:underline">Estudiantes</Link>.</div>
               </>
             )}
           </div>
@@ -95,7 +95,7 @@ export function NewEnrollmentForm(p: { convocatoria: { id: string; name: string;
 
         <div className="mt-5 flex gap-3 justify-end">
           <button onClick={() => setOpen(false)} className="text-sm text-slate-500 hover:underline">Cancelar</button>
-          <button onClick={matricular} disabled={!student || !programId || busy} className="rounded-md bg-[#0f2a44] text-white px-4 py-1.5 text-sm disabled:opacity-50">
+          <button onClick={matricular} disabled={!student || !programId || busy} className="rounded-md bg-brand text-white px-4 py-1.5 text-sm disabled:opacity-50">
             {busy ? "Matriculando…" : "Matricular"}
           </button>
         </div>

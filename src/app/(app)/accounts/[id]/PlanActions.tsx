@@ -39,7 +39,7 @@ export function PlanActions({ enrollmentId, tienePlan }: { enrollmentId: string;
       {error && <div className="rounded-md bg-red-50 border border-red-200 text-red-700 text-xs px-3 py-2 text-left">{error}</div>}
       {aviso && <div className="rounded-md bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs px-3 py-2 text-left">{aviso}</div>}
       {!tienePlan ? (
-        <button onClick={generar} disabled={busy} className="rounded-md bg-[#0f2a44] text-white px-3 py-1.5 text-sm disabled:opacity-50">Generar plan de cuotas</button>
+        <button onClick={generar} disabled={busy} className="rounded-md bg-brand text-white px-3 py-1.5 text-sm disabled:opacity-50">Generar plan de cuotas</button>
       ) : ensayo ? (
         <div className="bg-white border border-amber-300 rounded-lg p-3 text-left text-sm space-y-1">
           <div className="font-medium">Confirmar refacturación</div>

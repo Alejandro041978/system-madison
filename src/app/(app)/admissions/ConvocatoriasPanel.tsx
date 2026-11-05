@@ -44,7 +44,7 @@ export function ConvocatoriasPanel(p: { rows: ConvocatoriaRow[]; categories: Cat
       <div className="flex items-center justify-between">
         <h2 className="text-sm font-semibold uppercase tracking-wider text-slate-500">Convocatorias</h2>
         {p.canEdit && !open && (
-          <button onClick={() => setOpen(true)} className="inline-flex items-center gap-1 text-sm text-sky-700 hover:underline"><Plus className="h-4 w-4" /> Nueva</button>
+          <button onClick={() => setOpen(true)} className="inline-flex items-center gap-1 text-sm text-plum hover:underline"><Plus className="h-4 w-4" /> Nueva</button>
         )}
       </div>
       {error && <div className="rounded-md bg-red-50 border border-red-200 text-red-700 text-xs px-3 py-2">{error}</div>}
@@ -66,7 +66,7 @@ export function ConvocatoriasPanel(p: { rows: ConvocatoriaRow[]; categories: Cat
           </div>
           <div className="flex gap-3 justify-end pt-1">
             <button type="button" onClick={() => setOpen(false)} className="text-slate-500 hover:underline">Cancelar</button>
-            <button className="rounded-md bg-[#0f2a44] text-white px-3 py-1">Crear</button>
+            <button className="rounded-md bg-brand text-white px-3 py-1">Crear</button>
           </div>
         </form>
       )}

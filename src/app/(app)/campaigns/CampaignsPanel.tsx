@@ -8,7 +8,7 @@ import type { Campaign } from "@/lib/campaigns";
 export type TemplateRow = { id: string; key: string; language: string; content_sid: string; bot_key: string | null; body_preview: string | null; active: boolean };
 
 const input = "rounded-md border border-slate-300 px-2 py-1.5 text-sm bg-white";
-const ESTADO: Record<string, string> = { borrador: "bg-slate-100 text-slate-700", activa: "bg-emerald-100 text-emerald-800", pausada: "bg-amber-100 text-amber-800", terminada: "bg-sky-100 text-sky-800" };
+const ESTADO: Record<string, string> = { borrador: "bg-slate-100 text-slate-700", activa: "bg-emerald-100 text-emerald-800", pausada: "bg-amber-100 text-amber-800", terminada: "bg-plum/10 text-plum-dark" };
 
 export function CampaignsPanel(p: {
   campanas: Campaign[]; templates: TemplateRow[]; stats: Record<string, Record<string, number>>;
@@ -67,7 +67,7 @@ export function CampaignsPanel(p: {
 
       {p.canEdit && (
         <div className="flex gap-3">
-          {!showNew && <button onClick={() => { setShowNew(true); setShowTpl(false); }} className="inline-flex items-center gap-1.5 rounded-md bg-[#0f2a44] text-white px-3 py-1.5 text-sm hover:bg-[#163a5c]"><Plus className="h-4 w-4" /> Nueva campaña</button>}
+          {!showNew && <button onClick={() => { setShowNew(true); setShowTpl(false); }} className="inline-flex items-center gap-1.5 rounded-md bg-brand text-white px-3 py-1.5 text-sm hover:bg-brand-dark"><Plus className="h-4 w-4" /> Nueva campaña</button>}
           {!showTpl && <button onClick={() => { setShowTpl(true); setShowNew(false); }} className="rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm hover:bg-slate-50">Registrar plantilla aprobada</button>}
         </div>
       )}
@@ -85,7 +85,7 @@ export function CampaignsPanel(p: {
           <div className="flex gap-3 justify-end">
             <button onClick={() => setShowTpl(false)} className="text-slate-500 hover:underline">Cancelar</button>
             <button onClick={async () => { if (await call("/api/campaigns/templates", "POST", tpl)) { setShowTpl(false); setTpl({ key: "", content_sid: "", language: "es", body_preview: "" }); } }}
-              disabled={!tpl.key || !tpl.content_sid} className="rounded-md bg-[#0f2a44] text-white px-3 py-1 disabled:opacity-50">Guardar</button>
+              disabled={!tpl.key || !tpl.content_sid} className="rounded-md bg-brand text-white px-3 py-1 disabled:opacity-50">Guardar</button>
           </div>
           {p.templates.length > 0 && (
             <ul className="border-t border-slate-100 pt-2 text-xs text-slate-600 space-y-1">
@@ -117,7 +117,7 @@ export function CampaignsPanel(p: {
             <div className="text-xs text-slate-400 mt-0.5">Campos: name, profession, employment, specialty_interest, program_interest, source</div></label>
           <div className="flex gap-3 justify-end">
             <button type="button" onClick={() => setShowNew(false)} className="text-slate-500 hover:underline">Cancelar</button>
-            <button className="rounded-md bg-[#0f2a44] text-white px-3 py-1.5">Crear (borrador)</button>
+            <button className="rounded-md bg-brand text-white px-3 py-1.5">Crear (borrador)</button>
           </div>
         </form>
       )}
@@ -138,7 +138,7 @@ export function CampaignsPanel(p: {
                   {c.pitch_notes && <p className="mt-1 text-xs text-slate-600">{c.pitch_notes}</p>}
                   <div className="mt-1.5 flex gap-2 text-xs">
                     <span className="rounded bg-slate-100 px-1.5 py-0.5">{s.pendiente ?? 0} en cola</span>
-                    <span className="rounded bg-sky-100 text-sky-800 px-1.5 py-0.5">{s.enviado ?? 0} enviados</span>
+                    <span className="rounded bg-plum/10 text-plum-dark px-1.5 py-0.5">{s.enviado ?? 0} enviados</span>
                     <span className="rounded bg-emerald-100 text-emerald-800 px-1.5 py-0.5">{s.respondido ?? 0} respondieron</span>
                     {(s.error ?? 0) > 0 && <span className="rounded bg-red-100 text-red-800 px-1.5 py-0.5">{s.error} errores</span>}
                     {(s.excluido ?? 0) > 0 && <span className="rounded bg-amber-100 text-amber-800 px-1.5 py-0.5">{s.excluido} excluidos</span>}
@@ -157,7 +157,7 @@ export function CampaignsPanel(p: {
                       </>
                     ) : c.status !== "terminada" ? (
                       <button disabled={busy === c.id} onClick={() => { if (confirm(`¿Activar «${c.name}»? El cron horario empezará a enviar la plantilla a la cola (hasta ${c.daily_limit}/día).`)) call("/api/campaigns", "PATCH", { id: c.id, status: "activa" }); }}
-                        className="rounded-md bg-[#0f2a44] text-white px-2 py-1">Activar</button>
+                        className="rounded-md bg-brand text-white px-2 py-1">Activar</button>
                     ) : null}
                     {c.status !== "terminada" && <button disabled={busy === c.id} onClick={() => call("/api/campaigns", "PATCH", { id: c.id, status: "terminada" })} className="rounded-md border border-slate-300 bg-white px-2 py-1 text-slate-500">Terminar</button>}
                   </div>
@@ -181,7 +181,7 @@ function Filtro(p: { titulo: string; opciones: string[]; sel: string[]; onChange
         {p.opciones.map((o) => (
           <button type="button" key={o}
             onClick={() => p.onChange(p.sel.includes(o) ? p.sel.filter((x) => x !== o) : [...p.sel, o])}
-            className={`rounded-full px-2 py-0.5 text-xs border ${p.sel.includes(o) ? "bg-[#0f2a44] text-white border-[#0f2a44]" : "bg-white border-slate-300"}`}>
+            className={`rounded-full px-2 py-0.5 text-xs border ${p.sel.includes(o) ? "bg-brand text-white border-brand" : "bg-white border-slate-300"}`}>
             {o}
           </button>
         ))}

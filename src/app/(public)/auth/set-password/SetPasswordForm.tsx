@@ -22,7 +22,7 @@ export function SetPasswordForm() {
     window.location.assign(new URL("/", window.location.origin).href);
   }
 
-  const input = "mt-1 w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500";
+  const input = "mt-1 w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand/50";
 
   return (
     <form onSubmit={onSubmit} className="space-y-4">
@@ -36,7 +36,7 @@ export function SetPasswordForm() {
       </label>
       {error && <p className="text-sm text-red-600">{error}</p>}
       <button type="submit" disabled={busy}
-        className="w-full rounded-md bg-[#0f2a44] text-white py-2 text-sm font-medium hover:bg-[#163a5c] disabled:opacity-60">
+        className="w-full rounded-md bg-brand text-white py-2 text-sm font-medium hover:bg-brand-dark disabled:opacity-60">
         {busy ? "Guardando…" : "Guardar y entrar"}
       </button>
     </form>

@@ -9,7 +9,7 @@ const SITUACIONES: Record<Student["situation"], string> = {
   activo: "Activo", egresado: "Egresado", retiro: "Retiro", campus_socio: "Campus socio",
 };
 const COLOR: Record<Student["situation"], string> = {
-  activo: "bg-emerald-100 text-emerald-800", egresado: "bg-sky-100 text-sky-800",
+  activo: "bg-emerald-100 text-emerald-800", egresado: "bg-plum/10 text-plum-dark",
   retiro: "bg-red-100 text-red-800", campus_socio: "bg-violet-100 text-violet-800",
 };
 const input = "rounded-md border border-slate-300 px-2 py-1.5 text-sm bg-white w-full";
@@ -52,7 +52,7 @@ export function SituationBox({ student, canEdit }: { student: Student; canEdit: 
       {canEdit && (
         <div className="mt-3 space-y-2">
           {student.situation_source === "manual" ? (
-            <button disabled={busy} onClick={() => call({ source: "auto" })} className="inline-flex items-center gap-1.5 text-sm text-sky-700 hover:underline">
+            <button disabled={busy} onClick={() => call({ source: "auto" })} className="inline-flex items-center gap-1.5 text-sm text-plum hover:underline">
               <RefreshCw className="h-3.5 w-3.5" /> Volver a derivación automática
             </button>
           ) : !open ? (
@@ -66,7 +66,7 @@ export function SituationBox({ student, canEdit }: { student: Student; canEdit: 
               </select>
               <input className={input} placeholder="Motivo (obligatorio)" value={note} onChange={(e) => setNote(e.target.value)} />
               <div className="flex gap-3">
-                <button disabled={busy || !note.trim()} onClick={() => call({ source: "manual", situation: sit, note })} className="rounded-md bg-[#0f2a44] text-white px-3 py-1 text-sm disabled:opacity-50">Fijar</button>
+                <button disabled={busy || !note.trim()} onClick={() => call({ source: "manual", situation: sit, note })} className="rounded-md bg-brand text-white px-3 py-1 text-sm disabled:opacity-50">Fijar</button>
                 <button onClick={() => setOpen(false)} className="text-sm text-slate-500 hover:underline">Cancelar</button>
               </div>
             </div>

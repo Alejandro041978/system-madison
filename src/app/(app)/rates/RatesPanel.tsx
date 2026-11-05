@@ -120,7 +120,7 @@ Solo se permite si ninguna matrícula la ha usado. Queda copia en el registro de
                       <td className="px-4 py-2 text-xs text-slate-500">{r.created_by ?? "—"}</td>
                       <td className="px-4 py-2">
                         {vigenteHoy && <span className="rounded bg-emerald-100 text-emerald-800 px-1.5 py-0.5 text-xs">vigente</span>}
-                        {futura && <span className="rounded bg-sky-100 text-sky-800 px-1.5 py-0.5 text-xs">futura</span>}
+                        {futura && <span className="rounded bg-plum/10 text-plum-dark px-1.5 py-0.5 text-xs">futura</span>}
                         {!vigenteHoy && !futura && <span className="text-xs text-slate-400">histórica</span>}
                       </td>
                       {p.canDelete && (
@@ -148,7 +148,7 @@ Solo se permite si ninguna matrícula la ha usado. Queda copia en el registro de
                 <input required type="date" className={`${input} w-full`} value={nuevo.effective_from} onChange={(e) => setNuevo({ ...nuevo, effective_from: e.target.value })} /></label>
               <label className="block text-sm"><div className="text-slate-600 mb-1">Nota (motivo)</div>
                 <input className={`${input} w-full`} value={nuevo.note} onChange={(e) => setNuevo({ ...nuevo, note: e.target.value })} /></label>
-              <button className="w-full rounded-md bg-[#0f2a44] text-white px-3 py-1.5 text-sm">Crear versión</button>
+              <button className="w-full rounded-md bg-brand text-white px-3 py-1.5 text-sm">Crear versión</button>
               <p className="text-xs text-slate-400">No se puede editar una versión existente: crea una nueva con otra fecha. Una versión equivocada se puede borrar mientras ninguna matrícula la haya usado.</p>
             </form>
           )}

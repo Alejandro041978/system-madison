@@ -92,7 +92,7 @@ export function ImportLeads() {
         </label>
         <div className="mt-4 flex gap-3 justify-end">
           <button onClick={() => setOpen(false)} className="text-sm text-slate-500 hover:underline">Cerrar</button>
-          <button onClick={importar} disabled={busy || !consent || !texto.trim()} className="rounded-md bg-[#0f2a44] text-white px-4 py-1.5 text-sm disabled:opacity-50">
+          <button onClick={importar} disabled={busy || !consent || !texto.trim()} className="rounded-md bg-brand text-white px-4 py-1.5 text-sm disabled:opacity-50">
             {busy ? "Importando…" : "Importar"}
           </button>
         </div>

@@ -52,7 +52,7 @@ export default async function StudentsPage({ searchParams }: PageProps<"/student
             <tbody className="divide-y divide-slate-100">
               {results.map((s) => (
                 <tr key={s.id} className={s.disabled ? "text-slate-400" : ""}>
-                  <td className="px-4 py-2"><Link href={`/students/${s.id}`} className="font-medium text-sky-800 hover:underline">{nombreCompleto(s)}</Link>
+                  <td className="px-4 py-2"><Link href={`/students/${s.id}`} className="font-medium text-plum-dark hover:underline">{nombreCompleto(s)}</Link>
                     {s.disabled && <span className="ml-2 rounded bg-slate-200 text-slate-700 px-1.5 py-0.5 text-xs">deshabilitado</span>}</td>
                   <td className="px-4 py-2 font-mono text-xs">{s.document_type} {s.document_number}</td>
                   <td className="px-4 py-2 font-mono text-xs">{s.email}</td>

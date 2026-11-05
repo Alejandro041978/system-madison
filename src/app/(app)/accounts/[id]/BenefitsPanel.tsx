@@ -47,7 +47,7 @@ export function BenefitsPanel(p: { enrollmentId: string; becas: Beca[]; bonos: B
             <input type="number" step="0.01" min="0.01" max="100" placeholder="%" className={`${input} w-20`} value={beca.percentage} onChange={(e) => setBeca({ ...beca, percentage: e.target.value })} />
             <input placeholder="Nota" className={input} value={beca.note} onChange={(e) => setBeca({ ...beca, note: e.target.value })} />
             <button onClick={async () => { if (await call("/api/accounts/scholarships", "POST", { enrollment_id: p.enrollmentId, ...beca })) setBeca({ percentage: "", note: "" }); }}
-              disabled={!beca.percentage} className="rounded-md bg-[#0f2a44] text-white px-3 py-1 text-sm disabled:opacity-50">Conceder</button>
+              disabled={!beca.percentage} className="rounded-md bg-brand text-white px-3 py-1 text-sm disabled:opacity-50">Conceder</button>
           </div>
         ) : <div className="text-sm text-slate-400">Sin beca activa.</div>}
         {p.becas.filter((b) => b.revoked_at).map((b) => (
@@ -60,7 +60,7 @@ export function BenefitsPanel(p: { enrollmentId: string; becas: Beca[]; bonos: B
         <ul className="space-y-1 text-sm">
           {p.bonos.filter((b) => !b.revoked_at).map((b) => (
             <li key={b.id}>
-              <span className="rounded bg-sky-100 text-sky-800 px-2 py-0.5 font-medium">{b.amount != null ? `${Number(b.amount).toLocaleString("es-ES")} €` : `${Number(b.percentage)} %`}</span>
+              <span className="rounded bg-plum/10 text-plum-dark px-2 py-0.5 font-medium">{b.amount != null ? `${Number(b.amount).toLocaleString("es-ES")} €` : `${Number(b.percentage)} %`}</span>
               <span className="ml-2 text-xs text-slate-500">{b.reason} · {b.granted_by}</span>
               {p.canEdit && <button onClick={() => revocar("/api/accounts/bonuses", b.id)} className="ml-2 text-xs text-red-600 hover:underline">revocar</button>}
             </li>
@@ -78,7 +78,7 @@ export function BenefitsPanel(p: { enrollmentId: string; becas: Beca[]; bonos: B
             <button onClick={async () => {
               const body = { enrollment_id: p.enrollmentId, reason: bono.reason, [bono.tipo]: bono.valor };
               if (await call("/api/accounts/bonuses", "POST", body)) setBono({ tipo: bono.tipo, valor: "", reason: "" });
-            }} disabled={!bono.valor || !bono.reason.trim()} className="rounded-md bg-[#0f2a44] text-white px-3 py-1 text-sm disabled:opacity-50">Añadir</button>
+            }} disabled={!bono.valor || !bono.reason.trim()} className="rounded-md bg-brand text-white px-3 py-1 text-sm disabled:opacity-50">Añadir</button>
           </div>
         )}
         {p.bonos.filter((b) => b.revoked_at).map((b) => (

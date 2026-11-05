@@ -14,7 +14,7 @@ const num = (v: string | undefined, def = 0): number => {
 };
 
 /** Nombre de la institución tal como se muestra (sidebar, login, bots, correos). */
-export const APP_NAME = process.env.APP_NAME?.trim() || "Madison";
+export const APP_NAME = process.env.APP_NAME?.trim() || "Madison OK";
 
 /** Moneda por defecto de tarifas y cargos (ISO 4217). */
 export const APP_CURRENCY = (process.env.APP_CURRENCY?.trim() || "EUR").toUpperCase().slice(0, 3);

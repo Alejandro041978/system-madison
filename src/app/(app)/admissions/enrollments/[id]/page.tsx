@@ -16,7 +16,7 @@ const ESTADO: Record<string, { label: string; cls: string }> = {
   pendiente_pago: { label: "Pendiente de pago", cls: "bg-amber-100 text-amber-800" },
   activa: { label: "Activa", cls: "bg-emerald-100 text-emerald-800" },
   retirada: { label: "Retirada", cls: "bg-red-100 text-red-800" },
-  finalizada: { label: "Finalizada", cls: "bg-sky-100 text-sky-800" },
+  finalizada: { label: "Finalizada", cls: "bg-plum/10 text-plum-dark" },
 };
 
 export default async function EnrollmentPage({ params }: PageProps<"/admissions/enrollments/[id]">) {
@@ -40,7 +40,7 @@ export default async function EnrollmentPage({ params }: PageProps<"/admissions/
 
   return (
     <div>
-      <Link href="/admissions" className="text-sm text-sky-700 hover:underline">← Admisión y matrícula</Link>
+      <Link href="/admissions" className="text-sm text-plum hover:underline">← Admisión y matrícula</Link>
       <div className="mt-2 mb-5 flex items-start justify-between">
         <div>
           <h1 className="text-2xl font-semibold">

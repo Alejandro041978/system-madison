@@ -100,7 +100,7 @@ function FilaCargo(p: FilaProps) {
       <tr className={`border-t border-slate-200 ${p.vencido ? "bg-red-50/50" : ""}`}>
         <td className="px-3 py-1.5">
           {c.description ?? c.charge_type}
-          {c.is_initial && <span className="ml-2 rounded bg-sky-100 text-sky-800 px-1 text-xs">inicial</span>}
+          {c.is_initial && <span className="ml-2 rounded bg-plum/10 text-plum-dark px-1 text-xs">inicial</span>}
           {c.source === "retiro" && <span className="ml-2 rounded bg-violet-100 text-violet-800 px-1 text-xs">retorno</span>}
         </td>
         <td className={`px-3 py-1.5 font-mono text-xs ${p.vencido ? "text-red-700 font-semibold" : ""}`}>{c.due_date}</td>
@@ -114,7 +114,7 @@ function FilaCargo(p: FilaProps) {
         </td>
         {p.canEdit && (
           <td className="px-3 py-1.5 text-right">
-            {p.saldo > 0.005 && !p.pagando && <button onClick={p.onPagar} className="text-xs text-sky-700 hover:underline">Registrar pago</button>}
+            {p.saldo > 0.005 && !p.pagando && <button onClick={p.onPagar} className="text-xs text-plum hover:underline">Registrar pago</button>}
           </td>
         )}
       </tr>
@@ -134,7 +134,7 @@ function FilaCargo(p: FilaProps) {
               {p.isSuperadmin && (
                 <label className="flex items-center gap-1.5 pb-1.5 text-xs"><input type="checkbox" checked={p.f.descuento} onChange={(e) => p.setF({ ...p.f, descuento: e.target.checked })} /> DESCUENTO (no es ingreso)</label>
               )}
-              <button onClick={p.onConfirmar} className="rounded-md bg-[#0f2a44] text-white px-3 py-1">Guardar</button>
+              <button onClick={p.onConfirmar} className="rounded-md bg-brand text-white px-3 py-1">Guardar</button>
               <button onClick={p.onCancelar} className="text-slate-500 hover:underline text-sm">Cancelar</button>
             </div>
           </td>

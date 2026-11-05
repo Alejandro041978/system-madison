@@ -24,7 +24,7 @@ export default async function AppLayout({ children }: LayoutProps<"/">) {
           </div>
         )}
         {!PERMISOS_ESTRICTO && (
-          <div className="bg-slate-100 text-slate-600 text-xs px-6 py-1 border-b border-slate-200">
+          <div className="bg-plum/5 text-plum-dark text-xs px-6 py-1 border-b border-plum/10">
             Permisos en modo auditoría: las denegaciones se registran pero no bloquean.
           </div>
         )}

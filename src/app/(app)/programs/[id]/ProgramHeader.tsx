@@ -66,7 +66,7 @@ export function ProgramHeader(p: { program: Program; categories: Cat[]; canEdit:
         <input className={`${input} w-40`} value={f.external_id} onChange={(e) => setF({ ...f, external_id: e.target.value })} /></label>
       <label className="text-sm flex items-center gap-2 pb-2"><input type="checkbox" checked={f.partner_campus} onChange={(e) => setF({ ...f, partner_campus: e.target.checked })} /> Campus socio</label>
       <label className="text-sm flex items-center gap-2 pb-2"><input type="checkbox" checked={f.active} onChange={(e) => setF({ ...f, active: e.target.checked })} /> Activo</label>
-      <button className="rounded-md bg-[#0f2a44] text-white px-3 py-1.5 text-sm">Guardar</button>
+      <button className="rounded-md bg-brand text-white px-3 py-1.5 text-sm">Guardar</button>
       <button type="button" onClick={() => setEditing(false)} className="text-sm text-slate-500 hover:underline">Cancelar</button>
     </form>
   );

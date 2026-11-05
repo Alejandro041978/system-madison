@@ -52,7 +52,7 @@ export function CategoriesTable(p: { rows: CategoryRow[]; programas: Record<stri
 
       {p.canEdit && (
         !showNew ? (
-          <button onClick={() => setShowNew(true)} className="inline-flex items-center gap-1.5 rounded-md bg-[#0f2a44] text-white px-3 py-1.5 text-sm hover:bg-[#163a5c]">
+          <button onClick={() => setShowNew(true)} className="inline-flex items-center gap-1.5 rounded-md bg-brand text-white px-3 py-1.5 text-sm hover:bg-brand-dark">
             <Plus className="h-4 w-4" /> Nueva categoría
           </button>
         ) : (
@@ -65,7 +65,7 @@ export function CategoriesTable(p: { rows: CategoryRow[]; programas: Record<stri
               <input required type="number" step="0.01" min="0" className={`${input} w-28`} value={nuevo.passing_score} onChange={(e) => setNuevo({ ...nuevo, passing_score: e.target.value })} /></label>
             <label className="text-sm flex-1 min-w-48"><div className="text-slate-600 mb-1">Descripción</div>
               <input className={`${input} w-full`} value={nuevo.description} onChange={(e) => setNuevo({ ...nuevo, description: e.target.value })} /></label>
-            <button className="rounded-md bg-[#0f2a44] text-white px-3 py-1.5 text-sm">Guardar</button>
+            <button className="rounded-md bg-brand text-white px-3 py-1.5 text-sm">Guardar</button>
             <button type="button" onClick={() => setShowNew(false)} className="text-sm text-slate-500 hover:underline">Cancelar</button>
           </form>
         )

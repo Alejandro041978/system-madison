@@ -1,5 +1,6 @@
 import { fichaPorToken, prellenadoDeFicha, programasComerciales } from "@/lib/enroll";
 import { APP_NAME, MATRICULA_FEE, PAYMENT_URL, PAYMENT_PROVIDER, APP_CURRENCY } from "@/lib/config";
+import Image from "next/image";
 import { EnrollForm } from "./EnrollForm";
 
 export const metadata = { title: `Ficha de inscripción · ${APP_NAME}` };
@@ -11,10 +12,11 @@ export default async function EnrollPage({ params }: PageProps<"/enroll/[token]"
   const caducada = ficha ? new Date(ficha.expires_at) < new Date() : false;
 
   return (
-    <div className="flex-1 flex items-start justify-center p-6 bg-[#0f2a44]/5">
+    <div className="flex-1 flex items-start justify-center p-6 bg-plum/5">
       <div className="w-full max-w-2xl">
         <div className="text-center mb-6 mt-4">
-          <div className="text-2xl font-semibold text-[#0f2a44]">{APP_NAME}</div>
+          <Image src="/brand/logo.png" alt={APP_NAME} width={256} height={256} priority className="mx-auto h-16 w-16 rounded-2xl shadow-sm" />
+          <div className="mt-3 text-2xl font-semibold text-plum-dark">{APP_NAME}</div>
           <div className="text-sm text-slate-500">Ficha de inscripción</div>
         </div>
         {!ficha || caducada ? (

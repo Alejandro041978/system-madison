@@ -49,7 +49,7 @@ export default async function AccountStatementPage({ params }: PageProps<"/accou
 
   return (
     <div>
-      <Link href={`/admissions/enrollments/${id}`} className="text-sm text-sky-700 hover:underline">← Matrícula</Link>
+      <Link href={`/admissions/enrollments/${id}`} className="text-sm text-plum hover:underline">← Matrícula</Link>
       <div className="mt-2 mb-5 flex items-start justify-between">
         <div>
           <h1 className="text-2xl font-semibold">Estado de cuenta · {student.data ? nombreCompleto(student.data) : ""}</h1>
@@ -93,7 +93,7 @@ export default async function AccountStatementPage({ params }: PageProps<"/accou
 
 function Card({ t, v, s, warn, strong }: { t: string; v: string; s: string; warn?: boolean; strong?: boolean }) {
   return (
-    <div className={`rounded-lg border p-3 ${warn ? "bg-red-50 border-red-200" : strong ? "bg-[#0f2a44] text-white border-[#0f2a44]" : "bg-white border-slate-200"}`}>
+    <div className={`rounded-lg border p-3 ${warn ? "bg-red-50 border-red-200" : strong ? "bg-brand text-white border-brand" : "bg-white border-slate-200"}`}>
       <div className={`text-[11px] uppercase tracking-wider ${strong ? "text-slate-300" : "text-slate-400"}`}>{t}</div>
       <div className="text-lg font-semibold">{v}</div>
       <div className={`text-xs ${strong ? "text-slate-300" : "text-slate-500"}`}>{s}</div>

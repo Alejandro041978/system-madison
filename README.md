@@ -41,6 +41,12 @@ Decisión estructural heredada que **sí** sigue en el código porque cambiarla 
 - Pantallas: `/staff` (personal), `/roles` (matriz de permisos), `/audit` (decisiones de permisos).
 - `PERMISOS_MODO=auditoria` (defecto) registra denegaciones y deja pasar; `estricto` bloquea.
 
+## Identidad visual Madison OK (2026-11-05)
+
+- Paleta en `src/app/globals.css` como tokens de Tailwind: `brand` (rosa, acción principal), `plum` / `plum-dark` / `plum-light` (morado: sidebar, títulos, enlaces), `lime` (acento). Ningún componente escribe un color de marca a mano.
+- Logotipos en `public/brand/` (`logo.png` rosa cuadrado, `logo-white.png` para fondo morado). Favicon e iconos de app en `src/app/favicon.ico`, `icon.png`, `apple-icon.png`, generados del logotipo.
+- Sidebar morado con logotipo y estado activo por ruta (`src/components/NavLink.tsx`); login, elección de contraseña, sin acceso y ficha pública con la misma identidad.
+
 ## Invitaciones de acceso al personal (2026-11-05)
 
 - `supabase/013_invitaciones.sql` — `hr_employees.invited_at/by`, `invite_kind` (`invite` usuario nuevo | `recovery` ya existía), `invite_error`.

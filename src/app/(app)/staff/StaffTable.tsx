@@ -92,7 +92,7 @@ export function StaffTable(p: { rows: StaffRow[]; roles: RoleOption[]; canEdit: 
       {p.canEdit && (
         <div>
           {!showNew ? (
-            <button onClick={() => setShowNew(true)} className="inline-flex items-center gap-1.5 rounded-md bg-[#0f2a44] text-white px-3 py-1.5 text-sm hover:bg-[#163a5c]">
+            <button onClick={() => setShowNew(true)} className="inline-flex items-center gap-1.5 rounded-md bg-brand text-white px-3 py-1.5 text-sm hover:bg-brand-dark">
               <Plus className="h-4 w-4" /> Nueva ficha
             </button>
           ) : (
@@ -112,7 +112,7 @@ export function StaffTable(p: { rows: StaffRow[]; roles: RoleOption[]; canEdit: 
                   {p.roles.map((r) => <option key={r.id} value={r.id}>{r.name}</option>)}
                 </select>
               </label>
-              <button className="rounded-md bg-[#0f2a44] text-white px-3 py-1.5 text-sm">Guardar</button>
+              <button className="rounded-md bg-brand text-white px-3 py-1.5 text-sm">Guardar</button>
               <button type="button" onClick={() => setShowNew(false)} className="text-sm text-slate-500 hover:underline">Cancelar</button>
             </form>
           )}
@@ -166,7 +166,7 @@ export function StaffTable(p: { rows: StaffRow[]; roles: RoleOption[]; canEdit: 
                     </span>
                     {p.canEdit && r.active && (
                       <button onClick={() => invitar(r)} disabled={enviando === r.id}
-                        className="inline-flex items-center gap-1 text-sky-700 hover:underline disabled:opacity-50"
+                        className="inline-flex items-center gap-1 text-plum hover:underline disabled:opacity-50"
                         title={r.user_id ? "Enviar un enlace para establecer una contraseña nueva" : "Enviar el enlace de acceso"}>
                         <Send className="h-3 w-3" /> {enviando === r.id ? "Enviando…" : r.invited_at || r.user_id ? "Reenviar" : "Invitar"}
                       </button>
@@ -178,7 +178,7 @@ export function StaffTable(p: { rows: StaffRow[]; roles: RoleOption[]; canEdit: 
                     {r.id !== p.selfId && r.active && (
                       <form action="/api/auth/impersonate" method="post">
                         <input type="hidden" name="employee_id" value={r.id} />
-                        <button className="inline-flex items-center gap-1 text-xs text-sky-700 hover:underline" title="Ver la aplicación como este colaborador (solo lectura)">
+                        <button className="inline-flex items-center gap-1 text-xs text-plum hover:underline" title="Ver la aplicación como este colaborador (solo lectura)">
                           <Eye className="h-3.5 w-3.5" /> Ver como
                         </button>
                       </form>

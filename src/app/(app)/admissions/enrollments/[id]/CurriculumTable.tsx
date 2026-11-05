@@ -8,7 +8,7 @@ export type CourseInfo = { id: string; code: string; name: string; credits: numb
 
 const ESTADO: Record<CourseEnrollment["status"], { label: string; cls: string }> = {
   no_iniciada: { label: "No iniciada", cls: "bg-slate-100 text-slate-700" },
-  en_curso: { label: "En curso", cls: "bg-sky-100 text-sky-800" },
+  en_curso: { label: "En curso", cls: "bg-plum/10 text-plum-dark" },
   aprobada: { label: "Aprobada", cls: "bg-emerald-100 text-emerald-800" },
   reprobada: { label: "Reprobada", cls: "bg-red-100 text-red-800" },
   retirada: { label: "Retirada", cls: "bg-amber-100 text-amber-800" },
@@ -94,7 +94,7 @@ function Group(p: { lvl: number; courses: CourseInfo[]; porCurso: Map<string, Co
             {p.canEdit && (
               <td className="px-3 py-1.5 text-right whitespace-nowrap">
                 {i === 0 && ACCIONES[r.status].map((a) => (
-                  <button key={a.action} disabled={p.busy === r.id} onClick={() => p.act(r, a.action)} className="ml-2 text-xs text-sky-700 hover:underline disabled:opacity-50">{a.label}</button>
+                  <button key={a.action} disabled={p.busy === r.id} onClick={() => p.act(r, a.action)} className="ml-2 text-xs text-plum hover:underline disabled:opacity-50">{a.label}</button>
                 ))}
               </td>
             )}
